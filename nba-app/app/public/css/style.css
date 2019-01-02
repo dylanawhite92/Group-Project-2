@@ -1,0 +1,72 @@
+body {
+    background-image: url("../images/background.png");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+}
+
+#body-content {
+    width: 80%!important;
+    min-height: 520px;
+    margin-top: 1rem;
+    background-color: #000000b3;
+    border-radius: 10px;
+}
+
+.active-player {
+    background-image: linear-gradient(to bottom right, red, black);
+    display: block;
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 2px;
+    max-width: 240px;
+}
+
+#salary-cap-box {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#points-box {
+    font-size: 36px;
+    margin-bottom: 150px;
+}
+
+#action-box {
+    border: solid green 3px;
+    background-image: linear-gradient(to bottom right, red, black);
+    height: 400px;
+    width: 490px;
+    /* display: none; */
+}
+
+#salary-cap-box, #points-box {
+display: inline-block;
+color: darkorange;
+background-color: black;}
+
+.active-player, #salary-cap-box, #points-box, #action-box {
+    border: solid green 3px;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+#salary-cap-box {
+    height: 34px;
+    width: 135px;
+}
+
+#slider {
+    width: 70%;
+    margin-bottom: 20px;
+}
+
+#slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border: 0px;
+    background: url("../images/money-emoji.png")
+}
