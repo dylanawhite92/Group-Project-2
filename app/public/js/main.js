@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    // Bulls Current Roster
+    // Bulls Current Roster - will be replaced by API data
     var bullsRoster = [
         zachLavine = {
             number: 8,
@@ -106,17 +106,57 @@ $(document).ready(function() {
         }
     ];
 
-    // Input from salary slider
+    // Teams in NBA - replace with API data when we have it
+    var nbaTeams = [
+        "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
+        "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets",
+        "Detroit Pistons", "Golden State Warriors", "Houston Rockets", "Indiana Pacers",
+        "LA Clippers", "Los Angeles Lakers", "Memphis Grizzlies", "Miami Heat", 
+        "Milwaukee Bucks", "Minnesota Timberwolves", "New Orleans Pelicans", "New York Knicks",
+        "Oklahoma City Thunder", "Orlando Magic", "Philadelphia 76ers", "Phoenix Suns",
+        "Portland Trail Blazers", "Sacramento Kings", "San Antonio Spurs", "Toronto Raptors",
+        "Utah Jazz", "Washington Wizards"
+    ];
 
+    // Positions - replace with API data when we have it
+    var positions = ["Center", "Point Guard", "Shooting Guard", "Power Forward", "Small Forward"];
+
+    // Dynamically load page
+    function renderPage() {
+        renderRoster();
+        renderTeams();
+        renderPositions();
+    };
+
+    // Dropdown button functionality
+    $('.dropdown-trigger').dropdown();
+
+    // Update slider value as it moves
     $("#slider").on("input", function() {
         updateSlider();
     });
 
+    // Drag and Drop functions
+    function onDragOver(event) {
+        var dropzone = event.target;
+
+
+    };
+
+    function onDrop(event) {
+        event.preventDefault();
+
+        var draggableDiv = $(".active-player");
+        draggableDiv.attr("draggable", "false");
+        event.target.append(draggableDiv);
+    };
+    
+    // Input from salary slider
     function updateSlider() {
         var val = $("#slider").val();
-        $("#salary-cap-box").html(`$${addCommas(val)}`);
-        // console.log(`$${addCommas(val)}`);
-    }
+
+        $("#salary-cap-box").html(`$${addCommas(val)}`);  
+    };
 
     // Prettify salary by adding commas with reg ex
     function addCommas(val) {
@@ -125,6 +165,7 @@ $(document).ready(function() {
         return val_parts.join(".");
     };
 
+    // Pull from array, placeholder code for until we link up API data
     function renderRoster() {
         for (var i = 0; i < bullsRoster.length; i++) {
             // Testing - Delete Later
@@ -136,11 +177,46 @@ $(document).ready(function() {
         
             var newDiv = $("<div>");
             newDiv.addClass("active-player");
+
+            newDiv.attr({
+                draggable: "true",
+                ondragstart: "onDragStart(event)",
+                ondragend: "onDragEnd(event)"
+            });
+
             newDiv.append(`#${bullsRoster[i].number} ${bullsRoster[i].name}, ${bullsRoster[i].position}`);
-            $("#roster-block").append(newDiv);
+            $("#available-block").append(newDiv);
         }    
     };
 
-    renderRoster();
-    
+    // Pull from array, placeholder code for until we link up API data
+    function renderTeams() {
+        for (var i = 0; i < nbaTeams.length; i++) {
+            var newTeam = $("<li>");
+            var newLink = $("<a href='#!'>");
+
+            newLink.addClass("black-text");
+
+            newLink.append(`${nbaTeams[i]}`)
+            newTeam.append(newLink);
+            
+            $("#dropdown1").append(newTeam);
+        };
+    };
+
+    // Pull from array, placeholder code for until we link up API data
+    function renderPositions() {
+        for (var i = 0; i < positions.length; i++) {
+            var newPosition = $("<li>");
+            var newLink = $("<a href='#!'>");
+
+            newLink.addClass("black-text");
+
+            newLink.append(`${positions[i]}`)
+            newPosition.append(newLink);
+            $("#dropdown2").append(newPosition);
+        };
+    };
+
+    renderPage();
 });
