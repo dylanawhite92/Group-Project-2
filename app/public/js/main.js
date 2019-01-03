@@ -137,18 +137,24 @@ $(document).ready(function() {
     });
 
     // Drag and Drop functions
-    function onDragOver(event) {
-        var dropzone = event.target;
 
-
+    window.drag = function(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+        $("#dropzone").addClass("drop-pulse");
+        console.log(ev.target.id);
     };
 
-    function onDrop(event) {
-        event.preventDefault();
+    window.drop = function(ev) {
+        ev.preventDefault();
 
-        var draggableDiv = $(".active-player");
-        draggableDiv.attr("draggable", "false");
-        event.target.append(draggableDiv);
+        var data = ev.dataTransfer.getData("text");
+        console.log(data);
+        ev.target.appendChild(document.getElementById(data));
+        $("#dropzone").removeClass("drop-pulse");
+    };
+
+    window.allowDrop = function(ev) {
+        ev.preventDefault();
     };
     
     // Input from salary slider
@@ -180,8 +186,8 @@ $(document).ready(function() {
 
             newDiv.attr({
                 draggable: "true",
-                ondragstart: "onDragStart(event)",
-                ondragend: "onDragEnd(event)"
+                ondragstart: "drag(event)",
+                id: "player-" + (parseInt([i]) + 1)
             });
 
             newDiv.append(`#${bullsRoster[i].number} ${bullsRoster[i].name}, ${bullsRoster[i].position}`);
