@@ -119,6 +119,7 @@ body {
     background-image: linear-gradient(to bottom right, red, black);
     height: 400px;
     width: 100%;
+    overflow: scroll;
 }
 
 #salary-cap-box, #points-box {

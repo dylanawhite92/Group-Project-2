@@ -46,7 +46,7 @@ $(document).ready(function() {
         }, 
         bobbyPortis = {
             number: 5,
-            name: "Zach LaVine",
+            name: "Bobby Portis",
             position: "Power Forward",
             ppg: 0
         }, 
@@ -140,17 +140,22 @@ $(document).ready(function() {
 
     window.drag = function(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
+
         $("#dropzone").addClass("drop-pulse");
-        console.log(ev.target.id);
+        $(".active-player").addClass("animated infinite rubberBand");
     };
 
-    window.drop = function(ev) {
+    window.drop = function(ev, el) {
         ev.preventDefault();
 
         var data = ev.dataTransfer.getData("text");
-        console.log(data);
-        ev.target.appendChild(document.getElementById(data));
+        el.appendChild(document.getElementById(data));
         $("#dropzone").removeClass("drop-pulse");
+        $(".active-player").removeClass("animated infinite rubberBand");
+    };
+
+    window.dragend = function(ev) {
+        $(".active-player").removeClass("animated infinite rubberBand");
     };
 
     window.allowDrop = function(ev) {
@@ -187,6 +192,7 @@ $(document).ready(function() {
             newDiv.attr({
                 draggable: "true",
                 ondragstart: "drag(event)",
+                ondragend: "dragend(event)",
                 id: "player-" + (parseInt([i]) + 1)
             });
 

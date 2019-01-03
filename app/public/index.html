@@ -10,6 +10,7 @@
     <!-- Materialize CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/style.css" />
 </head>
 <body>
@@ -88,7 +89,7 @@
                 <div class="col s5">
                     <div id="action-block">
                         <h5>Your Team</h5>
-                        <div id="dropzone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div id="dropzone" ondrop="drop(event, this)" ondragover="allowDrop(event)"></div>
                     </div>
                 </div>
             </div>
