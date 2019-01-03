@@ -6,12 +6,57 @@ body {
     text-align: center;
 }
 
+.left-icon {
+    padding-top: 25px;
+}
+
+.input-field {
+    float: right;
+}
+
+.search-icon, .dropdown-content {
+    position: absolute;
+}
+
+
+.search-icon {
+    right: 5px;
+}
+
+.btn {
+    margin: 5px;
+    width: 100%;
+}
+
+.dropdown-container {
+    position: relative;
+}
+
+.dropdown-content {
+    top: -90%;
+    max-height: 275px;
+    overflow: scroll;
+}
+
+.dropdown-container .dropdown-content a:hover {
+    color: white!important;
+}
+
+.dropdown-trigger:hover, .dropdown-container .dropdown-content a:hover {
+    background-color: black!important;
+}
+
 #body-content {
-    width: 80%!important;
+    width: 90%!important;
     min-height: 520px;
     margin-top: 1rem;
     background-color: #000000b3;
     border-radius: 10px;
+}
+
+#available-block {
+    height: 400px;
+    overflow: scroll;
 }
 
 .active-player {
@@ -23,9 +68,44 @@ body {
     max-width: 240px;
 }
 
+.active-player:hover {
+    cursor: grab;
+}
+
 #salary-cap-box {
     font-size: 20px;
     margin-bottom: 20px;
+}
+
+.drop-pulse {
+    animation: pulse 2s infinite;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+        box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+        box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+        box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    }
 }
 
 #points-box {
@@ -33,12 +113,11 @@ body {
     margin-bottom: 150px;
 }
 
-#action-box {
+#dropzone {
     border: solid green 3px;
     background-image: linear-gradient(to bottom right, red, black);
     height: 400px;
-    width: 490px;
-    /* display: none; */
+    width: 100%;
 }
 
 #salary-cap-box, #points-box {
@@ -46,10 +125,13 @@ display: inline-block;
 color: darkorange;
 background-color: black;}
 
-.active-player, #salary-cap-box, #points-box, #action-box {
+.active-player, #salary-cap-box, #points-box, #dropzone {
     border: solid green 3px;
-    border-radius: 5px;
     padding: 4px;
+}
+
+.active-player, #salary-cap-box, #points-box, #dropzone, #search {
+    border-radius: 5px;
 }
 
 #salary-cap-box {
