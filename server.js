@@ -1,5 +1,6 @@
 var express = require("express");
 var session = require("express-session");
+var path = require("path");
 
 var passport = require("./config/passport");
 
@@ -13,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Static directory
-app.use(express.static("./app/public"));
+app.use(express.static(path.join(__dirname, "app/public")));
 
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
