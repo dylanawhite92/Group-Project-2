@@ -156,6 +156,14 @@ background-color: black;}
     background: url("../images/money-emoji.png")
 }
 
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+
+#logout {
+    float: left;
+}
 /* Prevents materialize default slider from showing up */
 input[type=range]+ .thumb.active {
     display: none;
