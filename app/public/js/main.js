@@ -6,119 +6,102 @@ $(document).ready(function() {
             number: 8,
             name: "Zach LaVine",
             position: "Point Guard",
-            team: "Chicago Bulls",
             ppg: 0
         }, 
         lauriMarkkanen = {
             number: 24,
             name: "Lauri Markkanen",
             position: "Power Forward",
-            team: "Chicago Bulls",
             ppg: 0
         }, 
         jabariParker = {
             number: 2,
             name: "Jabari Parker",
             position: "Small Forward",
-            team: "Chicago Bulls",
             ppg: 0
         },
         wendellCarterJR = {
             number: 34,
             name: "Wendell Carter Jr.",
             position: "Center",
-            team: "Chicago Bulls",
             ppg: 0
         },
         krisDunn = {
             number: 32,
             name: "Kris Dunn",
             position: "Point Guard",
-            team: "Chicago Bulls",
             ppg: 0
         },
         ryanArcidiacono = {
             number: 51,
             name: "Ryan Arcidiacono",
             position: "Point Guard",
-            team: "Chicago Bulls",
             ppg: 0
         },
         justinHoliday = {
             number: 7,
             name: "Justin Holiday",
             position: "Small Forward",
-            team: "Chicago Bulls",
             ppg: 0
         }, 
         bobbyPortis = {
             number: 5,
-            name: "Bobby Portis",
+            name: "Zach LaVine",
             position: "Power Forward",
-            team: "Chicago Bulls",
             ppg: 0
         }, 
         shaquilleHarrison = {
             number: 3,
             name: "Shaquille Harrison",
             position: "Point Guard",
-            team: "Chicago Bulls",
             ppg: 0
         }, 
         robinLopez = {
             number: 42,
             name: "Robin Lopez",
             position: "Center",
-            team: "Chicago Bulls",
             ppg: 0
         },
         antonioBlakeney = {
             number: 9,
             name: "Antonio Blakeney",
             position: "Point Guard",
-            team: "Chicago Bulls",
             ppg: 0
         },
         denzelValentine = {
             number: 45,
             name: "Denzel Valentine",
             position: "Small Forward",
-            team: "Chicago Bulls",
             ppg: 0
         },
         cameronPayne = {
             number: 22,
             name: "Cameron Payne",
             position: "Point Guard",
-            team: "Chicago Bulls",
             ppg: 0
         },
         cristianoFelicio = {
             number: 6,
             name: "Cristiano Felicio",
             position: "Center",
-            team: "Chicago Bulls",
             ppg: 0
         },
         rawleAlkins = {
             number: 20,
             name: "Rawle Alkins",
             position: "Shooting Guard",
-            team: "Chicago Bulls",
             ppg: 0
         },
         chandlerHutchison = {
             number: 15,
             name: "Chandler Hutchison",
             position: "Small Forward",
-            team: "Chicago Bulls",
             ppg: 0
         },
         brandonSampson = {
             number: 44,
             name: "Brandon Sampson",
             position: "Point Guard",
-            team: "Chicago Bulls",
             ppg: 0
         }
     ];
@@ -137,8 +120,6 @@ $(document).ready(function() {
 
     // Positions - replace with API data when we have it
     var positions = ["Center", "Point Guard", "Shooting Guard", "Power Forward", "Small Forward"];
-
-    var userTeam = [];
 
     // Dynamically load page
     function renderPage() {
@@ -159,30 +140,21 @@ $(document).ready(function() {
 
     window.drag = function(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
-
         $("#dropzone").addClass("drop-pulse");
-        $(".active-player").addClass("animated infinite rubberBand");
+        console.log(ev.target.id);
     };
 
-    window.drop = function(ev, el) {
+    window.drop = function(ev) {
         ev.preventDefault();
 
         var data = ev.dataTransfer.getData("text");
-        el.appendChild(document.getElementById(data));
-        stopAnimation();
-    };
-
-    window.dragend = function(ev) {
-        stopAnimation();
+        console.log(data);
+        ev.target.appendChild(document.getElementById(data));
+        $("#dropzone").removeClass("drop-pulse");
     };
 
     window.allowDrop = function(ev) {
         ev.preventDefault();
-    };
-
-    function stopAnimation() {
-        $(".active-player").removeClass("animated infinite rubberBand");
-        $("#dropzone").removeClass("drop-pulse");
     };
     
     // Input from salary slider
@@ -202,24 +174,25 @@ $(document).ready(function() {
     // Pull from array, placeholder code for until we link up API data
     function renderRoster() {
         for (var i = 0; i < bullsRoster.length; i++) {
-            
+            // Testing - Delete Later
+            // console.log("-------------------------------------------");
+            // console.log(`Number: ${bullsRoster[i].number}`); 
+            // console.log(`Name: ${bullsRoster[i].name}`);
+            // console.log(`Position: ${bullsRoster[i].position}`);
+            // console.log("-------------------------------------------");
+        
             var newDiv = $("<div>");
             newDiv.addClass("active-player");
 
             newDiv.attr({
                 draggable: "true",
                 ondragstart: "drag(event)",
-                ondragend: "dragend(event)",
-                id: "player-" + [i]
+                id: "player-" + (parseInt([i]) + 1)
             });
 
             newDiv.append(`#${bullsRoster[i].number} ${bullsRoster[i].name}, ${bullsRoster[i].position}`);
             $("#available-block").append(newDiv);
-        }
-
-        // for (var i = 0; i < bullsRoster.length; i++) {
-
-        // }
+        }    
     };
 
     // Pull from array, placeholder code for until we link up API data
