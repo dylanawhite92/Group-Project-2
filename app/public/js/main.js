@@ -121,6 +121,8 @@ $(document).ready(function() {
     // Positions - replace with API data when we have it
     var positions = ["Center", "Point Guard", "Shooting Guard", "Power Forward", "Small Forward"];
 
+    var userTeam = [];
+
     // Dynamically load page
     function renderPage() {
         renderRoster();
@@ -150,16 +152,20 @@ $(document).ready(function() {
 
         var data = ev.dataTransfer.getData("text");
         el.appendChild(document.getElementById(data));
-        $("#dropzone").removeClass("drop-pulse");
-        $(".active-player").removeClass("animated infinite rubberBand");
+        stopAnimation();
     };
 
     window.dragend = function(ev) {
-        $(".active-player").removeClass("animated infinite rubberBand");
+        stopAnimation();
     };
 
     window.allowDrop = function(ev) {
         ev.preventDefault();
+    };
+
+    function stopAnimation() {
+        $(".active-player").removeClass("animated infinite rubberBand");
+        $("#dropzone").removeClass("drop-pulse");
     };
     
     // Input from salary slider
@@ -179,13 +185,7 @@ $(document).ready(function() {
     // Pull from array, placeholder code for until we link up API data
     function renderRoster() {
         for (var i = 0; i < bullsRoster.length; i++) {
-            // Testing - Delete Later
-            // console.log("-------------------------------------------");
-            // console.log(`Number: ${bullsRoster[i].number}`); 
-            // console.log(`Name: ${bullsRoster[i].name}`);
-            // console.log(`Position: ${bullsRoster[i].position}`);
-            // console.log("-------------------------------------------");
-        
+            
             var newDiv = $("<div>");
             newDiv.addClass("active-player");
 
@@ -193,12 +193,16 @@ $(document).ready(function() {
                 draggable: "true",
                 ondragstart: "drag(event)",
                 ondragend: "dragend(event)",
-                id: "player-" + (parseInt([i]) + 1)
+                id: "player-" + [i]
             });
 
             newDiv.append(`#${bullsRoster[i].number} ${bullsRoster[i].name}, ${bullsRoster[i].position}`);
             $("#available-block").append(newDiv);
-        }    
+        }
+
+        // for (var i = 0; i < bullsRoster.length; i++) {
+
+        // }
     };
 
     // Pull from array, placeholder code for until we link up API data

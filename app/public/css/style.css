@@ -100,8 +100,8 @@ body {
         box-shadow: 0 0 0 0 rgba(183,28,28, .6);
     }
     70% {
-        -moz-box-shadow: 0 0 0 20px rgba(183,28,28, 0);
-        box-shadow: 0 0 0 20px rgba(183,28,28, 0);
+        -moz-box-shadow: 0 0 0 50px rgba(183,28,28, 0);
+        box-shadow: 0 0 0 50px rgba(183,28,28, 0);
     }
     100% {
         -moz-box-shadow: 0 0 0 0 rgba(183,28,28, 0);
@@ -132,7 +132,7 @@ background-color: black;}
     padding: 4px;
 }
 
-.active-player, #salary-cap-box, #points-box, #dropzone, #search {
+.active-player, #salary-cap-box, #points-box, #dropzone, #search, .dropdown-content {
     border-radius: 5px;
 }
 
