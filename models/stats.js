@@ -1,39 +1,33 @@
 module.exports = function (sequelize, DataTypes) {
-    var Stat = sequelize.define("Stat", {
-        name: {
+    var Bull = sequelize.define("Bull", {
+        team_name: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
-        position: {
+        player_name: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
-        height: {
+        player_position: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
-        weight: {
-            type: DataTypes.STRING,
+        player_salary: {
+            type: DataTypes.INTEGER,
             allowNull: false,
-            validate: {
-                len: [1]
-            }
         },
-        Jersey: {
+        ppg: {
             type: DataTypes.INTEGER,
         },
-        Salary: {
-            type: DataTypes.INTEGER,
-        }
     });
-    return Stat;
+    return Bull;
 };
