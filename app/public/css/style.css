@@ -10,10 +10,6 @@ body {
     padding-top: 25px;
 }
 
-form {
-    margin-bottom: 5px;
-}
-
 .input-field {
     float: right;
 }
@@ -130,7 +126,7 @@ background-color: black;}
     padding: 4px;
 }
 
-.active-player, #salary-cap-box, #points-box, #dropzone, #search {
+.active-player, #salary-cap-box, #points-box, #dropzone, #search, .dropdown-content {
     border-radius: 5px;
 }
 
@@ -160,9 +156,6 @@ form.login {
   margin-top: 50px;
 }
 
-#logout {
-    float: left;
-}
 /* Prevents materialize default slider from showing up */
 input[type=range]+ .thumb.active {
     display: none;
