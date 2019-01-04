@@ -27,11 +27,7 @@ $(document).ready(function() {
       $.post("/api/signup", {
         email: email,
         password: password
-      }).then(function(data) {
-        // window.location.replace(data);
-        console.log(data);
-        // If there's an error, handle it by throwing up a bootstrap alert
-      }).catch(handleLoginErr);
+      });
     }
   
     function handleLoginErr(err) {
