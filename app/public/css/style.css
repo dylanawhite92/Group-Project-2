@@ -152,3 +152,12 @@ background-color: black;}
     border: 0px;
     background: url("../images/money-emoji.png")
 }
+
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+
+#logout {
+    float: left;
+}
