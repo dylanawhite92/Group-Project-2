@@ -77,34 +77,35 @@ body {
     margin-bottom: 20px;
 }
 
+/* Pulse animation to show dropzone is active */
 .drop-pulse {
     animation: pulse 2s infinite;
 }
 
 @-webkit-keyframes pulse {
     0% {
-      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+      -webkit-box-shadow: 0 0 0 0 rgba(183,28,28, .6);
     }
     70% {
-        -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+        -webkit-box-shadow: 0 0 0 20px rgba(183,28,28, 0);
     }
     100% {
-        -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+        -webkit-box-shadow: 0 0 0 0 rgba(183,28,28, 0);
     }
 }
 
 @keyframes pulse {
     0% {
-        -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
-        box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+        -moz-box-shadow: 0 0 0 0 rgba(183,28,28, .6);
+        box-shadow: 0 0 0 0 rgba(183,28,28, .6);
     }
     70% {
-        -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
-        box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+        -moz-box-shadow: 0 0 0 20px rgba(183,28,28, 0);
+        box-shadow: 0 0 0 20px rgba(183,28,28, 0);
     }
     100% {
-        -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
-        box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+        -moz-box-shadow: 0 0 0 0 rgba(183,28,28, 0);
+        box-shadow: 0 0 0 0 rgba(183,28,28, 0);
     }
 }
 
@@ -140,6 +141,8 @@ background-color: black;}
 }
 
 #slider {
+    -webkit-appearance: none;
+    appearance: none;
     width: 70%;
     margin-bottom: 20px;
 }
@@ -160,4 +163,8 @@ form.login {
 
 #logout {
     float: left;
+}
+/* Prevents materialize default slider from showing up */
+input[type=range]+ .thumb.active {
+    display: none;
 }
