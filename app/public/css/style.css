@@ -10,17 +10,16 @@ body {
     padding-top: 25px;
 }
 
+form {
+    margin-bottom: 5px;
+}
+
 .input-field {
     float: right;
 }
 
 .search-icon, .dropdown-content {
     position: absolute;
-}
-
-
-.search-icon {
-    right: 5px;
 }
 
 .btn {
