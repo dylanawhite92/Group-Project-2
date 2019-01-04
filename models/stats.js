@@ -26,7 +26,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
         },
         ppg: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.DECIMAL,
         },
     });
     return Bull;
