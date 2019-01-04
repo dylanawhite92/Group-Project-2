@@ -10,6 +10,7 @@
     <!-- Materialize CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/style.css" />
 </head>
 <body>
@@ -18,9 +19,6 @@
     <nav class="red darken-4">
         <div class="nav-wrapper container">
             <a href="#" class="brand-logo center">Dream Team Manager</a>
-            <a id="logout" href="/logout">
-                Logout
-              </a>
         </div>
     </nav>
 
@@ -62,6 +60,19 @@
                                     <label class="label-icon" for="search"></label>
                                 </div>
                             </form>
+                           
+                            <div class="card blue-grey darken-1">
+                                <div class="card-content white-text">
+                                    <span class="card-title">Card Title</span>
+                                    <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                                </div>
+                                <div class="card-action">
+                                    <a href="#">This is a link</a>
+                                    <a href="#">This is a link</a>
+                                </div>
+                            </div>
+                                                           
                         </div>
                     </div>
 
@@ -69,7 +80,7 @@
                     <div id="numbers-block">
                         <h5>Salary Cap</h5>
                         <div id="salary-container">
-                            <input id="slider" type="range" min="10000000" max="100000000" value="70000000" step="1000000">
+                            <input id="slider" class="browser-default" type="range" min="10000000" max="100000000" value="70000000" step="1000000">
                             <output id="salary-cap-box">$70,000,000</output>
                         </div>
 
@@ -80,8 +91,8 @@
                         <!-- Stats Card-->
 
                         <!-- Disabled button to show need for validation -->
-                        <h5>Disabled Button</h5>
-                        <a class="btn disabled"><i class="material-icons right">directions_run</i>Submit</a>
+                        <!-- <h5>Disabled Button</h5>
+                        <a class="btn disabled"><i class="material-icons right">directions_run</i>Submit</a> -->
                         <h5>Active Button</h5>
                         <!-- Disabled button changes to this active button when team is filled using remove/add classes in JS -->
                         <a class="waves-effect waves-red btn pulse red darken-4"><i class="material-icons right">directions_run</i>Submit</a>                    
@@ -91,7 +102,7 @@
                 <div class="col s5">
                     <div id="action-block">
                         <h5>Your Team</h5>
-                        <div id="dropzone" class="drop-pulse" ondrop="onDrop(event)" ondragover="onDragOver(event)"></div>
+                        <div id="dropzone" ondrop="drop(event, this)" ondragover="allowDrop(event)"></div>
                     </div>
                 </div>
             </div>
@@ -99,8 +110,8 @@
     </div>
 
     <!-- jQuery Reference -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>    <!-- interact.js Reference -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <!-- interact.js Reference -->
     <script src="https://cdn.jsdelivr.net/npm/interactjs@1.3.4/dist/interact.min.js"></script>
     <!-- JS Reference -->
     <script src="./js/main.js"></script>
