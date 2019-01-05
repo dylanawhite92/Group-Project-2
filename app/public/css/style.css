@@ -18,11 +18,6 @@ body {
     position: absolute;
 }
 
-
-.search-icon {
-    right: 5px;
-}
-
 .btn {
     margin: 5px;
     width: 100%;
@@ -131,7 +126,7 @@ background-color: black;}
     padding: 4px;
 }
 
-.active-player, #salary-cap-box, #points-box, #dropzone, #search {
+.active-player, #salary-cap-box, #points-box, #dropzone, #search, .dropdown-content {
     border-radius: 5px;
 }
 
@@ -161,9 +156,6 @@ form.login {
   margin-top: 50px;
 }
 
-#logout {
-    float: left;
-}
 /* Prevents materialize default slider from showing up */
 input[type=range]+ .thumb.active {
     display: none;
