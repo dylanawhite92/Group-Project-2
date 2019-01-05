@@ -201,25 +201,23 @@ $(document).ready(function() {
 
     // Pull from array, placeholder code for until we link up API data
     function renderRoster() {
-        for (var i = 0; i < bullsRoster.length; i++) {
+        $.get("/api/bulls_data", function(data){
+            for (var i = 0; i < data.length; i++) {
             
-            var newDiv = $("<div>");
-            newDiv.addClass("active-player");
-
-            newDiv.attr({
-                draggable: "true",
-                ondragstart: "drag(event)",
-                ondragend: "dragend(event)",
-                id: "player-" + [i]
-            });
-
-            newDiv.append(`#${bullsRoster[i].number} ${bullsRoster[i].name}, ${bullsRoster[i].position}`);
-            $("#available-block").append(newDiv);
-        }
-
-        // for (var i = 0; i < bullsRoster.length; i++) {
-
-        // }
+                var newDiv = $("<div>");
+                newDiv.addClass("active-player");
+    
+                newDiv.attr({
+                    draggable: "true",
+                    ondragstart: "drag(event)",
+                    ondragend: "dragend(event)",
+                    id: "player-" + [i]
+                });
+    
+                newDiv.append(`${data[i].player_name} ${data[i].player_salary}`);
+                $("#available-block").append(newDiv);
+            };
+        });
     };
 
     // Pull from array, placeholder code for until we link up API data

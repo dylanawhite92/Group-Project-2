@@ -27,7 +27,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         ppg: {
             type: DataTypes.DECIMAL,
-        },
+        }
     });
     return Bull;
 };
