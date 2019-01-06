@@ -9,7 +9,7 @@ body {
 #body-content {
     min-height: 450px;
     margin-top: 1rem;
-    background-color: rgba(183, 28, 28, .6);
+    background-color: rgba(183, 28, 28, .8);
     border-radius: 10px;
 }
 
@@ -23,34 +23,11 @@ body {
     background-color: white!important;
 }
 
-/* Pulse animation to show dropzone is active */
-.drop-pulse {
-    animation: pulse 2s infinite;
+.container #body-content .col .fadeIn {
+    animation-delay: 1s;
 }
 
-@-webkit-keyframes pulse {
-    0% {
-      -webkit-box-shadow: 0 0 0 0 rgba(183,28,28, .6);
-    }
-    70% {
-        -webkit-box-shadow: 0 0 0 20px rgba(183,28,28, 0);
-    }
-    100% {
-        -webkit-box-shadow: 0 0 0 0 rgba(183,28,28, 0);
-    }
-}
-
-@keyframes pulse {
-    0% {
-        -moz-box-shadow: 0 0 0 0 rgba(183,28,28, .6);
-        box-shadow: 0 0 0 0 rgba(183,28,28, .6);
-    }
-    70% {
-        -moz-box-shadow: 0 0 0 20px rgba(183,28,28, 0);
-        box-shadow: 0 0 0 20px rgba(183,28,28, 0);
-    }
-    100% {
-        -moz-box-shadow: 0 0 0 0 rgba(183,28,28, 0);
-        box-shadow: 0 0 0 0 rgba(183,28,28, 0);
-    }
+.container #body-content .col .tada {
+    animation-delay: 1.5s;
+    animation-iteration-count: infinite;
 }
