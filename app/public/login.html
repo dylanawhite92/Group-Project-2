@@ -2,23 +2,35 @@
 <html lang="en">
 
 <head>
-  <title>Passport Authentication</title>
+  <title>Dream Team Manager</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="./css/style.css"/>
+<!-- Materialize CSS -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="./css/login.css"/>
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-      </div>
+  <!-- Navbar -->
+  <nav class="red darken-4">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo center">Dream Team Manager</a>
     </div>
   </nav>
+  
   <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+    <div class="row animated bounceInRight" id="body-content">
+      <div class="col s6">
+        <h5 class="animated fadeIn">
+            Welcome to the Fantasy Basketball Dream Team Manager! Have you ever imagined what it would be like to be the GM of an NBA team?
+            Have you ever dreamed of managing the Chicago Bulls in a hands-on approach to help them realize their true potential?
+            Well, look no further! With our interactive app you can swap and drop players, compare points per game, and work under the 
+            challenge of a salary cap to see how your team stacks up against other major NBA teams!
+        </h5>
+      </div>
+      <div class="col s6">
         <h2>Login Form</h2>
         <form class="login">
           <div class="form-group">
@@ -29,7 +41,7 @@
             <label for="exampleInputPassword1">Password</label>
             <input type="password" class="form-control" id="password-input" placeholder="Password">
           </div>
-          <button type="submit" class="btn btn-default">Login</button>
+          <button type="submit" class="black btn animated tada">Login</button>
         </form>
         <br />
         <p>Or sign up <a href="/">here</a></p>
