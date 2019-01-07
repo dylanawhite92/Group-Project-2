@@ -105,10 +105,10 @@ $(document).ready(function() {
                 });
 
                 var currency = (`${data[i].player_salary}`);
-                addCommas(currency);
-                // console.log(currency);
+                // addCommas(currency);
+                console.log(currency);
 
-                newDiv.append(`${data[i].player_name} $${currency}`);
+                newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
 
                 newDiv.append('<i class="fas fa-times drop"></i>');
 
