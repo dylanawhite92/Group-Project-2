@@ -15,7 +15,7 @@ $(document).ready(function() {
     var positions = ["C", "F", "G"];
 
     var userTeam = [];
-
+    
     // On click event for dropping players
     // $(document).on("click", ".drop", function(){
     //     dropPlayer();
@@ -43,7 +43,6 @@ $(document).ready(function() {
         renderRoster();
         renderTeams();
         renderPositions();
-        addingPpg();
     };
 
     // Dropdown button functionality
@@ -98,35 +97,39 @@ $(document).ready(function() {
         return val_parts.join(".");
     };
 
-    // Pull from array, placeholder code for until we link up API data
     function renderRoster() {
-        $.get("/api/bulls_data", function(data){
-            for (var i = 0; i < data.length; i++) {
+        $.ajax({
+            url: 'api/bulls_data',
+            type: 'GET'
+        }).then(function(data){
+            $.get("/api/bulls_data", function(data){
+
+                for (var i = 0; i < data.length; i++) {
+                    var newDiv = $("<div>");
+                    newDiv.addClass("active-player");
+                    newDiv.attr({
+                        draggable: "true",
+                        ondragstart: "drag(event)",
+                        ondragend: "dragend(event)",
+                        id: "bullsPlayer-" + [i]
+                    });   
+
+                    var currency = (`${data[i].player_salary}`);
+
+                    newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
+
+                    newDiv.append('<i class="fas fa-times drop"></i>');
+                    if (i <= 11) {
+                        $("#dropzone").append(newDiv); 
+                        userTeam.push(data[i]);                          
+                    }
+                    else {
+                        $("#dropzone1").append(newDiv);
+                    }
+                };
+                addingPpg();   
+            });
             
-                var newDiv = $("<div>");
-                newDiv.addClass("active-player");
-    
-                newDiv.attr({
-                    draggable: "true",
-                    ondragstart: "drag(event)",
-                    ondragend: "dragend(event)",
-                    id: "bullsPlayer-" + [i]
-                });
-
-                var currency = (`${data[i].player_salary}`);
-
-                newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
-
-                newDiv.append('<i class="fas fa-times drop"></i>');
-
-                if (i <= 11) {
-                    $("#dropzone").append(newDiv);
-                    userTeam.push(data[i]);
-                }
-                else {
-                    $("#dropzone1").append(newDiv);
-                }
-            };
         });
     };
 
@@ -169,7 +172,7 @@ $(document).ready(function() {
 
 function renderStatCard(num){
     $.get("/api/league_data", function(data){
-        console.log('working');
+        // console.log('working');
         for (var i = 0; i < data.length; i++) {
             if (num.includes(data[i].player_name)){
             
@@ -225,18 +228,14 @@ function renderStatCard(num){
     };
 
     function addingPpg(){
-        $.get("/api/bulls_data", function(data){
+        console.log('working');
             var teamScore = 0;
-
-            if ($('.active-player').parent($('#dropzone'))){
-                for (var i = 0; i < data.length; i++) {
-                    teamScore += parseInt(data[i].ppg);
-                };
-
-                $("#user-score").text(teamScore);
-            }; 
-        });
-    }
-
+            console.log(userTeam);
+            for (var i = 0; i < userTeam.length; i++) {
+                console.log(parseInt(userTeam[i].ppg));
+                teamScore += parseInt(userTeam[i].ppg);
+            };
+            $("#user-score").text(teamScore);
+        };
     renderPage();
 });
