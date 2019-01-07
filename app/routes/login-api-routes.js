@@ -6,7 +6,7 @@ module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
-  app.post("/api/login", passport.authenticate("local", { failureRedirect: "/" }), function(req, res) {
+  app.post("/api/login", passport.authenticate("local", { failureRedirect: "/", failureFlash: "Invalid username or password!"}), function(req, res) {
       res.json("/home");
   });
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
