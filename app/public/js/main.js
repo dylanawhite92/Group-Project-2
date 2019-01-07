@@ -22,6 +22,7 @@ $(document).ready(function() {
     $(document).on("click", ".black-text", function(){
         var teamNamePosition = this.textContent;
         console.log(teamNamePosition);
+        $('#available-block').empty();
         renderTeamPlayers(teamNamePosition);
     });
 
