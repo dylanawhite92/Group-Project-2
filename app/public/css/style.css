@@ -10,6 +10,10 @@ body, #dropzone, #available-block {
     background-position: center;
 }
 
+.card {
+    display: none;
+}
+
 /*adding a divider border*/
 #divider {
     border-right: 1px solid red;

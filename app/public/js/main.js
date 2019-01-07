@@ -30,6 +30,9 @@ $(document).ready(function() {
     // On click for populating stat card
     $(document).on("click", ".active-player", function(){
         var playerName = this.textContent;
+
+        $(".card").attr("display", "block")l
+
         $('.player-card').empty();
         renderStatCard(playerName);
     });
