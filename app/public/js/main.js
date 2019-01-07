@@ -105,8 +105,6 @@ $(document).ready(function() {
                 });
 
                 var currency = (`${data[i].player_salary}`);
-                // addCommas(currency);
-                console.log(currency);
 
                 newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
 
@@ -134,7 +132,9 @@ $(document).ready(function() {
 
     function renderTeamPlayers(num){
         $.get("/api/league_data", function(data){
-            console.log('working');
+            // Remove current players when searching a new team
+            $("#available-block").empty();
+
             for (var i = 0; i < data.length; i++) {
                 if (data[i].team_name == num || data[i].player_position == num || data[i].player_position == `${num}/C` || data[i].player_position == `${num}/F` || data[i].player_position == `${num}/G`){
                 var newDiv = $("<div>");
@@ -148,10 +148,8 @@ $(document).ready(function() {
                 });
 
                 var currency = (`${data[i].player_salary}`);
-                addCommas(currency);
-                console.log(data[i].team_name);
 
-                newDiv.append(`${data[i].player_name} $${currency}`);
+                newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
 
                 newDiv.append('<i class="fas fa-times drop"></i>');
 
