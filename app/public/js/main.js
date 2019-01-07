@@ -25,6 +25,14 @@ $(document).ready(function() {
         renderTeamPlayers(teamNamePosition);
     });
 
+    // On click for populating stat card
+    $(document).on("click", ".active-player", function(){
+        var playerName = this.textContent;
+        $('.player-card').empty();
+        renderStatCard(playerName);
+    });
+
+
     // Dynamically load page
     function renderPage() {
         renderRoster();
@@ -134,7 +142,7 @@ $(document).ready(function() {
 
     function renderTeamPlayers(num){
         $.get("/api/league_data", function(data){
-            console.log('working');
+            // console.log('working');
             for (var i = 0; i < data.length; i++) {
                 if (data[i].team_name == num || data[i].player_position == num || data[i].player_position == `${num}/C` || data[i].player_position == `${num}/F` || data[i].player_position == `${num}/G`){
                 var newDiv = $("<div>");
@@ -149,7 +157,6 @@ $(document).ready(function() {
 
                 var currency = (`${data[i].player_salary}`);
                 addCommas(currency);
-                console.log(data[i].team_name);
 
                 newDiv.append(`${data[i].player_name} $${currency}`);
 
@@ -161,6 +168,39 @@ $(document).ready(function() {
 }
 )};
 
+function renderStatCard(num){
+    $.get("/api/league_data", function(data){
+        console.log('working');
+        for (var i = 0; i < data.length; i++) {
+            if (num.includes(data[i].player_name)){
+            
+            var currency = (`${data[i].player_salary}`);
+            addCommas(currency);
+
+            $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${currency} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
+
+            $('.player-card').append('<i class="fas fa-times drop"></i>');
+  }
+}
+}
+);
+$.get("/api/bulls_data", function(data){
+    console.log('working');
+    for (var i = 0; i < data.length; i++) {
+        if (num.includes(data[i].player_name)){
+        
+        var currency = (`${data[i].player_salary}`);
+        addCommas(currency);
+        console.log(data[i].team_name);
+
+        $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${currency} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
+
+        $('.player-card').append('<i class="fas fa-times drop"></i>');
+}
+}
+}
+)
+}
     // Pull from array, placeholder code for until we link up API data
     function renderTeams() {
         for (var i = 0; i < nbaTeams.length; i++) {
