@@ -3,6 +3,8 @@ $(document).ready(function() {
     var loginForm = $("form.login");
     var emailInput = $("input#email-input");
     var passwordInput = $("input#password-input");
+    var nameValidate = $("#name-validation");
+    var passValidate = $("#password-validation");
   
     // When the form is submitted, we validate there's an email and password entered
     loginForm.on("submit", function(event) {
@@ -12,14 +14,20 @@ $(document).ready(function() {
         password: passwordInput.val().trim()
       };
   
-      if (!userData.email || !userData.password) {
+      if (!userData.email) {
+        $(nameValidate).text("Please enter a valid username!");
         return;
       }
-  
-      // If we have an email and password we run the loginUser function and clear the form
+      else if (!userData.password) {
+        $(passValidate).text("Please enter a valid password!");
+        return;
+      }
+      else if (userData.email && userData.password) {
+        // If we have an email and password we run the loginUser function and clear the form
       loginUser(userData.email, userData.password);
       emailInput.val("");
       passwordInput.val("");
+      }
     });
   
     // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
