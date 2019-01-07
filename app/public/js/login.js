@@ -16,9 +16,13 @@ $(document).ready(function() {
   
       if (!userData.email || !userData.password) {
         if (!userData.email) {
+          $(nameValidate).css("padding", "3px");
+          $(nameValidate).addClass("animated flipInX");
           $(nameValidate).text("Please enter a valid username!");
         }
         if (!userData.password) {
+          $(passValidate).css("padding", "3px");
+          $(passValidate).addClass("animated flipInX");
           $(passValidate).text("Please enter a valid password!");
         }
         return;
