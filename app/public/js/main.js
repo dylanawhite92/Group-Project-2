@@ -1,23 +1,29 @@
 $(document).ready(function() {
-    // Teams in NBA - replace with API data when we have it
+    // Teams in NBA
     var nbaTeams = [
-        "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
-        "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets",
-        "Detroit Pistons", "Golden State Warriors", "Houston Rockets", "Indiana Pacers",
-        "LA Clippers", "Los Angeles Lakers", "Memphis Grizzlies", "Miami Heat", 
-        "Milwaukee Bucks", "Minnesota Timberwolves", "New Orleans Pelicans", "New York Knicks",
-        "Oklahoma City Thunder", "Orlando Magic", "Philadelphia 76ers", "Phoenix Suns",
-        "Portland Trail Blazers", "Sacramento Kings", "San Antonio Spurs", "Toronto Raptors",
-        "Utah Jazz", "Washington Wizards"
+        "ATLANTA HAWKS", "BOSTON CELTICS", "BROOKLYN NETS", "CHARLOTTE HORNETS",
+        "CHICAGO BULLS", "CLEVELAND CAVALIERS", "DALLAS MAVERICKS", "DENVER NUGGETS",
+        "DETROIT PISTONS", "GOLDEN STATE WARRIORS", "HOUSTON ROCKETS", "INDIANA PACERS",
+        "LOS ANGELES CLIPPERS", "LOS ANGELES LAKERS", "MEMPHIS GRIZZLIES", "MIAMI HEAT", 
+        "MILWAUKEE BUCKS", "MINNESOTA TIMBERWOLVES", "NEW ORLEANS PELICANS", "NEW YORK KNICKS",
+        "OKLAHOMA CITY THUNDER", "ORLANDO MAGIC", "PHILADELPHIA 76ERS", "PHOENIX SUNS",
+        "PORTLAND TRAIL BLAZERS", "SACRAMENTO KINGS", "SAN ANTONIO SPURS", "TORONTO RAPTORS",
+        "UTAH JAZZ", "WASHINGTON WIZARDS"
     ];
 
-    // Positions - replace with API data when we have it
-    var positions = ["Center", "Point Guard", "Shooting Guard", "Power Forward", "Small Forward"];
+    // Positions
+    var positions = ["C", "F", "G"];
 
     var userTeam = [];
 
     // On click event for dropping players
     // $(document).on("click", ".drop", dropPlayer);
+
+    $(document).on("click", ".black-text", function(){
+        var teamNamePosition = this.textContent;
+        console.log(teamNamePosition);
+        renderTeamPlayers(teamNamePosition);
+    });
 
     // Dynamically load page
     function renderPage() {
@@ -100,7 +106,7 @@ $(document).ready(function() {
 
                 var currency = (`${data[i].player_salary}`);
                 addCommas(currency);
-                console.log(currency);
+                // console.log(currency);
 
                 newDiv.append(`${data[i].player_name} $${currency}`);
 
@@ -121,6 +127,35 @@ $(document).ready(function() {
     //       })
     //         .then(renderRoster);
     //     }
+
+    function renderTeamPlayers(num){
+        $.get("/api/league_data", function(data){
+            console.log('working');
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].team_name == num || data[i].player_position == num || data[i].player_position == `${num}/C` || data[i].player_position == `${num}/F` || data[i].player_position == `${num}/G`){
+                var newDiv = $("<div>");
+                newDiv.addClass("active-player");
+    
+                newDiv.attr({
+                    draggable: "true",
+                    ondragstart: "drag(event)",
+                    ondragend: "dragend(event)",
+                    id: "player-" + [i]
+                });
+
+                var currency = (`${data[i].player_salary}`);
+                addCommas(currency);
+                console.log(data[i].team_name);
+
+                newDiv.append(`${data[i].player_name} $${currency}`);
+
+                newDiv.append('<i class="fas fa-times drop"></i>');
+
+                $("#available-block").append(newDiv);
+      }
+    }
+}
+)};
 
     // Pull from array, placeholder code for until we link up API data
     function renderTeams() {
