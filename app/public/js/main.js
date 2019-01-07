@@ -159,10 +159,10 @@ $(document).ready(function() {
                 newDiv.append('<i class="fas fa-times drop"></i>');
 
                 $("#available-block").append(newDiv);
-      }
-    }
-}
-)};
+                }
+            }
+        });
+    };
 
 function renderStatCard(num){
     $.get("/api/league_data", function(data){
