@@ -112,8 +112,12 @@ $(document).ready(function() {
 
                 newDiv.append('<i class="fas fa-times drop"></i>');
 
-                $("#available-block").append(newDiv);
-
+                if (i <= 11) {
+                    $("#dropzone").append(newDiv);
+                }
+                else {
+                    $("#available-block").append(newDiv);
+                }
             };
         });
     };
