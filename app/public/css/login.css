@@ -3,7 +3,6 @@ body {
     background-size: cover;
     background-position: center;
     color: white;
-    text-align: center;
     text-shadow: 2px 2px 8px black;
 
 }
@@ -13,6 +12,7 @@ a, h2 {
 }
 
 #body-content {
+    text-align: center;
     min-height: 450px;
     margin-top: 1rem;
     background-color: rgba(183, 28, 28, .8);
