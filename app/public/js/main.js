@@ -142,7 +142,6 @@ $(document).ready(function() {
 
     function renderTeamPlayers(num){
         $.get("/api/league_data", function(data){
-            // console.log('working');
             for (var i = 0; i < data.length; i++) {
                 if (data[i].team_name == num || data[i].player_position == num || data[i].player_position == `${num}/C` || data[i].player_position == `${num}/F` || data[i].player_position == `${num}/G`){
                 var newDiv = $("<div>");
@@ -169,7 +168,6 @@ $(document).ready(function() {
 
 function renderStatCard(num){
     $.get("/api/league_data", function(data){
-        // console.log('working');
         for (var i = 0; i < data.length; i++) {
             if (num.includes(data[i].player_name)){
             
@@ -183,7 +181,6 @@ function renderStatCard(num){
  };
 });
 $.get("/api/bulls_data", function(data){
-    // console.log('working');
     for (var i = 0; i < data.length; i++) {
         if (num.includes(data[i].player_name)){
         
@@ -228,13 +225,14 @@ $.get("/api/bulls_data", function(data){
     function addingPpg(){
         $.get("/api/bulls_data", function(data){
             var teamScore = 0;
+            
             if ($('.active-player').parent($('#dropzone'))){
-            for (var i = 0; i < data.length; i++) {
-                teamScore += parseInt(data[i].ppg);
+                for (var i = 0; i < data.length; i++) {
+                    teamScore += parseInt(data[i].ppg);
+                };
+
+                $("#user-score").text(teamScore);
             };
-            $("#user-score").text(teamScore);
-        };
-            console.log(teamScore);
         });
     }
 
