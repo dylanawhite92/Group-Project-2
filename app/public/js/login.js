@@ -3,6 +3,8 @@ $(document).ready(function() {
     var loginForm = $("form.login");
     var emailInput = $("input#email-input");
     var passwordInput = $("input#password-input");
+    var nameValidate = $("#name-validation");
+    var passValidate = $("#password-validation");
   
     // When the form is submitted, we validate there's an email and password entered
     loginForm.on("submit", function(event) {
@@ -13,6 +15,16 @@ $(document).ready(function() {
       };
   
       if (!userData.email || !userData.password) {
+        if (!userData.email) {
+          $(nameValidate).css("padding", "3px");
+          $(nameValidate).addClass("animated flipInX");
+          $(nameValidate).text("Please enter a valid username!");
+        }
+        if (!userData.password) {
+          $(passValidate).css("padding", "3px");
+          $(passValidate).addClass("animated flipInX");
+          $(passValidate).text("Please enter a valid password!");
+        }
         return;
       }
   

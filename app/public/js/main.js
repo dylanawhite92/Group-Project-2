@@ -23,7 +23,6 @@ $(document).ready(function() {
 
     $(document).on("click", ".black-text", function(){
         var teamNamePosition = this.textContent;
-        console.log(teamNamePosition);
         $('#available-block').empty();
         renderTeamPlayers(teamNamePosition);
     });
@@ -31,6 +30,9 @@ $(document).ready(function() {
     // On click for populating stat card
     $(document).on("click", ".active-player", function(){
         var playerName = this.textContent;
+
+        $(".card").css("display", "block")
+
         $('.player-card').empty();
         renderStatCard(playerName);
     });
@@ -115,7 +117,7 @@ $(document).ready(function() {
                     var currency = (`${data[i].player_salary}`);
 
                     newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
-    
+
                     newDiv.append('<i class="fas fa-times drop"></i>');
                     if (i <= 11) {
                         $("#dropzone").append(newDiv); 
@@ -144,7 +146,6 @@ $(document).ready(function() {
 
     function renderTeamPlayers(num){
         $.get("/api/league_data", function(data){
-            // console.log('working');
             for (var i = 0; i < data.length; i++) {
                 if (data[i].team_name == num || data[i].player_position == num || data[i].player_position == `${num}/C` || data[i].player_position == `${num}/F` || data[i].player_position == `${num}/G`){
                 var newDiv = $("<div>");
@@ -158,17 +159,16 @@ $(document).ready(function() {
                 });
 
                 var currency = (`${data[i].player_salary}`);
-                addCommas(currency);
 
-                newDiv.append(`${data[i].player_name} $${currency}`);
+                newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
 
                 newDiv.append('<i class="fas fa-times drop"></i>');
 
                 $("#available-block").append(newDiv);
-      }
-    }
-}
-)};
+                }
+            }
+        });
+    };
 
 function renderStatCard(num){
     $.get("/api/league_data", function(data){
@@ -177,26 +177,25 @@ function renderStatCard(num){
             if (num.includes(data[i].player_name)){
             
             var currency = (`${data[i].player_salary}`);
-            addCommas(currency);
+
+            $('.player-card').append(
+                `Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} 
+                Position: ${data[i].player_position} Team Name: ${data[i].team_name} 
+                Points Per Game: ${data[i].ppg}`);
+   };
+ };
+});
+    $.get("/api/bulls_data", function(data){
+        for (var i = 0; i < data.length; i++) {
+            if (num.includes(data[i].player_name)){
+            
+            var currency = (`${data[i].player_salary}`);
 
             $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${currency} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
 
             $('.player-card').append('<i class="fas fa-times drop"></i>');
-   };
- };
-});
-$.get("/api/bulls_data", function(data){
-    // console.log('working');
-    for (var i = 0; i < data.length; i++) {
-        if (num.includes(data[i].player_name)){
-        
-        var currency = (`${data[i].player_salary}`);
-
-        $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${currency} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
-
-        $('.player-card').append('<i class="fas fa-times drop"></i>');
+            };
         };
-      };
     });
 };
     // Pull from array, placeholder code for until we link up API data
@@ -238,6 +237,5 @@ $.get("/api/bulls_data", function(data){
             };
             $("#user-score").text(teamScore);
         };
-
     renderPage();
 });

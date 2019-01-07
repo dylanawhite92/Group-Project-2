@@ -3,6 +3,8 @@ $(document).ready(function() {
     var signUpForm = $("form.signup");
     var emailInput = $("input#email-input");
     var passwordInput = $("input#password-input");
+    var nameValidate = $("#name-validation");
+    var passValidate = $("#password-validation");
   
     // When the signup button is clicked, we validate the email and password are not blank
     signUpForm.on("submit", function(event) {
@@ -13,8 +15,19 @@ $(document).ready(function() {
       };
   
       if (!userData.email || !userData.password) {
+        if (!userData.email) {
+          $(nameValidate).css("padding", "3px");
+          $(nameValidate).addClass("animated flipInX");
+          $(nameValidate).text("Please enter a valid username!");
+        }
+        if (!userData.password) {
+          $(passValidate).css("padding", "3px");
+          $(passValidate).addClass("animated flipInX");
+          $(passValidate).text("Please enter a valid password!");
+        }
         return;
       }
+
       // If we have an email and password, run the signUpUser function
       signUpUser(userData.email, userData.password);
       emailInput.val("");
