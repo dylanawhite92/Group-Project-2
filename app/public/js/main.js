@@ -233,7 +233,7 @@ $.get("/api/bulls_data", function(data){
             for (var i = 0; i < data.length; i++) {
                 teamScore += parseInt(data[i].ppg);
             };
-            console.log(teamScore);
+            $("#user-score").text(teamScore);
         });
     }
 
