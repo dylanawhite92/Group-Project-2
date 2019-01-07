@@ -15,7 +15,7 @@ body, #dropzone, #available-block {
     text-shadow: 0px 0px 0px black;
 }
 
-.nav-wrapper, h5 {
+.nav-wrapper, h5, #salary-cap-box, .points-box {
     font-family: 'Graduate', cursive!important;
 }
 
@@ -157,7 +157,9 @@ form {
 #salary-cap-box, .points-box {
 display: inline-block;
 color: darkorange;
-background-color: black;}
+background-color: black;
+
+}
 
 .active-player, #salary-cap-box, .points-box, #dropzone, #available-block {
     border: solid rgb(183,28,28) 3px;
