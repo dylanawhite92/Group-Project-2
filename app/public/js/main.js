@@ -31,7 +31,7 @@ $(document).ready(function() {
     $(document).on("click", ".active-player", function(){
         var playerName = this.textContent;
 
-        $(".card").attr("display", "block")l
+        $(".card").attr("display", "block")
 
         $('.player-card').empty();
         renderStatCard(playerName);
