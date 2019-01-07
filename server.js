@@ -1,3 +1,4 @@
+require("dotenv").config();
 var express = require("express");
 var session = require("express-session");
 var path = require("path");
@@ -16,7 +17,9 @@ app.use(express.json());
 // Static directory
 app.use(express.static(path.join(__dirname, "app/public/")));
 
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(
+  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 // Routes
@@ -26,8 +29,8 @@ require("./app/routes/bulls-api-routes.js")(app);
 require("./app/routes/league-api-routes.js")(app);
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync().then(function () {
-    app.listen(PORT, function () {
-        console.log("App listening on PORT " + PORT);
-    });
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
