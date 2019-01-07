@@ -133,31 +133,35 @@ $(document).ready(function() {
     function renderTeamPlayers(num){
         $.get("/api/league_data", function(data){
             // Remove current players when searching a new team
-            $("#available-block").empty();
 
             for (var i = 0; i < data.length; i++) {
                 if (data[i].team_name == num || data[i].player_position == num || data[i].player_position == `${num}/C` || data[i].player_position == `${num}/F` || data[i].player_position == `${num}/G`){
-                var newDiv = $("<div>");
-                newDiv.addClass("active-player");
-    
-                newDiv.attr({
-                    draggable: "true",
-                    ondragstart: "drag(event)",
-                    ondragend: "dragend(event)",
-                    id: "player-" + [i]
-                });
+                    var newDiv = $("<div>");
+                    newDiv.addClass("active-player");
+        
+                    newDiv.attr({
+                        draggable: "true",
+                        ondragstart: "drag(event)",
+                        ondragend: "dragend(event)",
+                        id: "player-" + [i]
+                    });
 
-                var currency = (`${data[i].player_salary}`);
+                    var currency = (`${data[i].player_salary}`);
 
-                newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
+                    newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
 
-                newDiv.append('<i class="fas fa-times drop"></i>');
+                    newDiv.append('<i class="fas fa-times drop"></i>');
 
-                $("#available-block").append(newDiv);
-      }
-    }
-}
-)};
+                    if (i <= 11) {
+                        $("#dropzone").append(newDiv);
+                    }
+                    else {
+                        $("#available-block").append(newDiv);
+                    }
+                }
+            };
+        }
+    )};
 
     // Pull from array, placeholder code for until we link up API data
     function renderTeams() {
