@@ -39,6 +39,7 @@ $(document).ready(function() {
         renderRoster();
         renderTeams();
         renderPositions();
+        addingPpg();
     };
 
     // Update stat card with clicked player
@@ -114,8 +115,6 @@ $(document).ready(function() {
                 });
 
                 var currency = (`${data[i].player_salary}`);
-                // addCommas(currency);
-                console.log(currency);
 
                 newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
 
@@ -181,10 +180,9 @@ function renderStatCard(num){
             $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${currency} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
 
             $('.player-card').append('<i class="fas fa-times drop"></i>');
-  }
-}
-}
-);
+   };
+ };
+});
 $.get("/api/bulls_data", function(data){
     console.log('working');
     for (var i = 0; i < data.length; i++) {
@@ -197,11 +195,10 @@ $.get("/api/bulls_data", function(data){
         $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${currency} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
 
         $('.player-card').append('<i class="fas fa-times drop"></i>');
-}
-}
-}
-)
-}
+        };
+      };
+    });
+};
     // Pull from array, placeholder code for until we link up API data
     function renderTeams() {
         for (var i = 0; i < nbaTeams.length; i++) {
@@ -230,6 +227,16 @@ $.get("/api/bulls_data", function(data){
             $("#dropdown2").append(newPosition);
         };
     };
+
+    function addingPpg(){
+        $.get("/api/bulls_data", function(data){
+            var teamScore = 0;
+            for (var i = 0; i < data.length; i++) {
+                teamScore += parseInt(data[i].ppg);
+            };
+            console.log(teamScore);
+        });
+    }
 
     renderPage();
 });
