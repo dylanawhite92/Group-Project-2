@@ -124,7 +124,7 @@ $(document).ready(function() {
                     $("#dropzone").append(newDiv);
                 }
                 else {
-                    $("#available-block").append(newDiv);
+                    $("#dropzone1").append(newDiv);
                 }
             };
         });
@@ -189,8 +189,6 @@ $.get("/api/bulls_data", function(data){
         if (num.includes(data[i].player_name)){
         
         var currency = (`${data[i].player_salary}`);
-        addCommas(currency);
-        console.log(data[i].team_name);
 
         $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${currency} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
 
@@ -231,10 +229,13 @@ $.get("/api/bulls_data", function(data){
     function addingPpg(){
         $.get("/api/bulls_data", function(data){
             var teamScore = 0;
+            if ($('.active-player').parent($('#dropzone'))){
             for (var i = 0; i < data.length; i++) {
                 teamScore += parseInt(data[i].ppg);
             };
             $("#user-score").text(teamScore);
+        };
+            console.log(teamScore);
         });
     }
 
