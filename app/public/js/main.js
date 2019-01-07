@@ -17,7 +17,9 @@ $(document).ready(function() {
     var userTeam = [];
 
     // On click event for dropping players
-    // $(document).on("click", ".drop", dropPlayer);
+    // $(document).on("click", ".drop", function(){
+    //     dropPlayer();
+    // });
 
     $(document).on("click", ".black-text", function(){
         var teamNamePosition = this.textContent;
@@ -111,7 +113,7 @@ $(document).ready(function() {
                     draggable: "true",
                     ondragstart: "drag(event)",
                     ondragend: "dragend(event)",
-                    id: "player-" + [i]
+                    id: "bullsPlayer-" + [i]
                 });
 
                 var currency = (`${data[i].player_salary}`);
@@ -122,11 +124,13 @@ $(document).ready(function() {
 
                 if (i <= 11) {
                     $("#dropzone").append(newDiv);
+                    userTeam.push(data[i]);
                 }
                 else {
                     $("#dropzone1").append(newDiv);
                 }
             };
+            console.log(userTeam);
         });
     };
 
@@ -138,6 +142,7 @@ $(document).ready(function() {
     //         url: "/api/bulls/" + id
     //       })
     //         .then(renderRoster);
+    //     $('.active-player').remove();
     //     }
 
     function renderTeamPlayers(num){
