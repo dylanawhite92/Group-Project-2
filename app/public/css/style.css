@@ -1,10 +1,18 @@
 body {
     background-image: url("../images/background.png");
-    background-size: cover;
-    background-position: center;
     color: white;
     text-align: center;
-    text-shadow: 2px 2px 8px black;
+    text-shadow: 2px 2px 6px black;
+}
+
+body, #dropzone {
+    background-size: cover;
+    background-position: center;
+}
+
+/* Added because these are the only elements that don't get a drop shadow */
+.disabled, li {
+    text-shadow: 0px 0px 0px black;
 }
 
 .nav-wrapper, h5 {
@@ -25,7 +33,7 @@ body {
 
 .btn {
     margin: 5px;
-    width: 100%;
+    width: 80%;
 }
 
 .dropdown-container {
@@ -54,7 +62,11 @@ body {
     border-radius: 10px;
 }
 
-#available-block {
+.card {
+    margin-top: 20px;
+}
+
+#available-block, #dropzone {
     height: 400px;
     overflow: scroll;
 }
@@ -116,9 +128,9 @@ body {
 
 #dropzone {
     border: solid green 3px;
-    background-image: linear-gradient(to bottom right, red, black);
-    height: 400px;
-    width: 100%;
+    background-image: url("../images/court.jpg");
+    width: 75%;
+    margin: auto;
 }
 
 #salary-cap-box, #points-box {

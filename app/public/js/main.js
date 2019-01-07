@@ -147,6 +147,11 @@ $(document).ready(function() {
         renderPositions();
     };
 
+    // Update stat card with clicked player
+    $(".active-player").on("click", function() {
+        console.log("player clicked");
+    });
+
     // Dropdown button functionality
     $('.dropdown-trigger').dropdown();
 
