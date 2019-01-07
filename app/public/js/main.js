@@ -171,10 +171,9 @@ function renderStatCard(num){
             if (num.includes(data[i].player_name)){
             
             var currency = (`${data[i].player_salary}`);
-            addCommas(currency);
 
             $('.player-card').append(
-                `Name: ${data[i].player_name} 2018/2019 Salary: $${currency} 
+                `Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} 
                 Position: ${data[i].player_position} Team Name: ${data[i].team_name} 
                 Points Per Game: ${data[i].ppg}`);
    };
