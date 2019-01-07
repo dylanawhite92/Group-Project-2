@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="icon" type="image/png" href="/app/public/images/favicon-32x32.png" sizes="32x32"/>
+    <link href="https://fonts.googleapis.com/css?family=Graduate" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/style.css"/>
 </head>
 <body>
@@ -20,10 +21,11 @@
     <nav class="red darken-4">
         <div class="nav-wrapper container">
             <a href="#" class="brand-logo center">Dream Team Manager</a>
+            <ul id="nav-mobile" class="right">
+                <li><a id="logout" href="/logout">Logout</a></li>
+            </ul>
         </div>
-        <a id="logout" href="/logout">
-            Logout
-        </a>
+        
     </nav>
     
         <div class="container" id="body-content">

@@ -4,6 +4,12 @@ body {
     background-position: center;
     color: white;
     text-align: center;
+    text-shadow: 2px 2px 8px black;
+
+}
+
+a, h2 {
+    font-family: 'Graduate', cursive!important;
 }
 
 #body-content {
