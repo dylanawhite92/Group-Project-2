@@ -12,4 +12,4 @@
 
 ![Image description](/app/public/images/byposition.jpg)
 
-![Image description](/app/public/images/byscores.jpg)
+![Image description](/app/public/images/scores.jpg)
