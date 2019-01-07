@@ -169,21 +169,21 @@ $(document).ready(function() {
 
 function renderStatCard(num){
     $.get("/api/league_data", function(data){
-        console.log('working');
+        // console.log('working');
         for (var i = 0; i < data.length; i++) {
             if (num.includes(data[i].player_name)){
             
             var currency = (`${data[i].player_salary}`);
-            addCommas(currency);
 
-            $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${currency} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
-
-            $('.player-card').append('<i class="fas fa-times drop"></i>');
+            $('.player-card').append(
+                `Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} 
+                Position: ${data[i].player_position} Team Name: ${data[i].team_name} 
+                Points Per Game: ${data[i].ppg}`);
    };
  };
 });
 $.get("/api/bulls_data", function(data){
-    console.log('working');
+    // console.log('working');
     for (var i = 0; i < data.length; i++) {
         if (num.includes(data[i].player_name)){
         
