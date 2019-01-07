@@ -239,4 +239,8 @@ function renderStatCard(num){
             $("#user-score").text(teamScore);
         };
     renderPage();
+
+    $.get("/api/boxscore", function(res) {
+        console.log(res);
+      });
 });
