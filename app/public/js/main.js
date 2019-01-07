@@ -23,7 +23,6 @@ $(document).ready(function() {
 
     $(document).on("click", ".black-text", function(){
         var teamNamePosition = this.textContent;
-        console.log(teamNamePosition);
         $('#available-block').empty();
         renderTeamPlayers(teamNamePosition);
     });
@@ -43,11 +42,6 @@ $(document).ready(function() {
         renderPositions();
         addingPpg();
     };
-
-    // Update stat card with clicked player
-    $(".active-player").on("click", function() {
-        console.log("player clicked");
-    });
 
     // Dropdown button functionality
     $('.dropdown-trigger').dropdown();
@@ -130,7 +124,6 @@ $(document).ready(function() {
                     $("#dropzone1").append(newDiv);
                 }
             };
-            console.log(userTeam);
         });
     };
 
@@ -147,7 +140,6 @@ $(document).ready(function() {
 
     function renderTeamPlayers(num){
         $.get("/api/league_data", function(data){
-            // console.log('working');
             for (var i = 0; i < data.length; i++) {
                 if (data[i].team_name == num || data[i].player_position == num || data[i].player_position == `${num}/C` || data[i].player_position == `${num}/F` || data[i].player_position == `${num}/G`){
                 var newDiv = $("<div>");
@@ -181,24 +173,24 @@ function renderStatCard(num){
             var currency = (`${data[i].player_salary}`);
             addCommas(currency);
 
-            $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${currency} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
-
-            $('.player-card').append('<i class="fas fa-times drop"></i>');
+            $('.player-card').append(
+                `Name: ${data[i].player_name} 2018/2019 Salary: $${currency} 
+                Position: ${data[i].player_position} Team Name: ${data[i].team_name} 
+                Points Per Game: ${data[i].ppg}`);
    };
  };
 });
-$.get("/api/bulls_data", function(data){
-    console.log('working');
-    for (var i = 0; i < data.length; i++) {
-        if (num.includes(data[i].player_name)){
-        
-        var currency = (`${data[i].player_salary}`);
+    $.get("/api/bulls_data", function(data){
+        for (var i = 0; i < data.length; i++) {
+            if (num.includes(data[i].player_name)){
+            
+            var currency = (`${data[i].player_salary}`);
 
-        $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${currency} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
+            $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${currency} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
 
-        $('.player-card').append('<i class="fas fa-times drop"></i>');
+            $('.player-card').append('<i class="fas fa-times drop"></i>');
+            };
         };
-      };
     });
 };
     // Pull from array, placeholder code for until we link up API data
@@ -233,13 +225,14 @@ $.get("/api/bulls_data", function(data){
     function addingPpg(){
         $.get("/api/bulls_data", function(data){
             var teamScore = 0;
+
             if ($('.active-player').parent($('#dropzone'))){
-            for (var i = 0; i < data.length; i++) {
-                teamScore += parseInt(data[i].ppg);
-            };
-            $("#user-score").text(teamScore);
-        };
-            console.log(teamScore);
+                for (var i = 0; i < data.length; i++) {
+                    teamScore += parseInt(data[i].ppg);
+                };
+
+                $("#user-score").text(teamScore);
+            }; 
         });
     }
 
