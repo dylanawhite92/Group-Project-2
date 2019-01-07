@@ -188,9 +188,10 @@ function renderStatCard(num){
             
             var currency = (`${data[i].player_salary}`);
 
-            $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${currency} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
-
-            $('.player-card').append('<i class="fas fa-times drop"></i>');
+            $('.player-card').append(
+                `Name: ${data[i].player_name} 2018/2019 Salary: $${currency} 
+                Position: ${data[i].player_position} Team Name: ${data[i].team_name} 
+                Points Per Game: ${data[i].ppg}`);
             };
         };
     });
