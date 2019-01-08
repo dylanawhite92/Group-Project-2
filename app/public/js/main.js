@@ -1,10 +1,10 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // Teams in NBA
     var nbaTeams = [
         "ATLANTA HAWKS", "BOSTON CELTICS", "BROOKLYN NETS", "CHARLOTTE HORNETS",
         "CHICAGO BULLS", "CLEVELAND CAVALIERS", "DALLAS MAVERICKS", "DENVER NUGGETS",
         "DETROIT PISTONS", "GOLDEN STATE WARRIORS", "HOUSTON ROCKETS", "INDIANA PACERS",
-        "LOS ANGELES CLIPPERS", "LOS ANGELES LAKERS", "MEMPHIS GRIZZLIES", "MIAMI HEAT", 
+        "LOS ANGELES CLIPPERS", "LOS ANGELES LAKERS", "MEMPHIS GRIZZLIES", "MIAMI HEAT",
         "MILWAUKEE BUCKS", "MINNESOTA TIMBERWOLVES", "NEW ORLEANS PELICANS", "NEW YORK KNICKS",
         "OKLAHOMA CITY THUNDER", "ORLANDO MAGIC", "PHILADELPHIA 76ERS", "PHOENIX SUNS",
         "PORTLAND TRAIL BLAZERS", "SACRAMENTO KINGS", "SAN ANTONIO SPURS", "TORONTO RAPTORS",
@@ -16,23 +16,49 @@ $(document).ready(function() {
 
     var activeTeam = [];
     var fullTeam = [];
-    
-    // On click event for dropping players
-    $(document).on("click", ".drop", function(){
-        var dropped = $(this).parent();
-        console.log(dropped);
-        dropPlayer(dropped);
+    var teamScore = 0; 
+    var salary = 0
 
+    // On click event for dropping players
+    $(document).on("click", ".drop", function () {
+        var dropped = $(this).parent();
+        var nameText = dropped[0].innerText;        
+        console.log(nameText);
+        dropPlayer(dropped);
+        $.each(activeTeam, function(i){
+            console.log('working');           
+            if(nameText.includes(activeTeam[i].player_name)) {
+                activeTeam.splice(i,1);
+                return false;
+            }
+        });
+        addingPpg();
+        $.each(fullTeam, function(i){
+            console.log('working');           
+            if(nameText.includes(fullTeam[i].player_name)) {
+                fullTeam.splice(i,1);
+                return false;
+            }
+        });
+        console.log(activeTeam);
+        console.log(fullTeam);
+        teamSalary();
     });
 
-    $(document).on("click", ".black-text", function(){
+    // $(document).on("click", ".drop1", function () {
+    //     var dropStat = $(this).parent();
+    //     console.log(dropStat);
+    //     dropStatCard(dropStat);
+    // });
+
+    $(document).on("click", ".black-text", function () {
         var teamNamePosition = this.textContent;
         $('#available-block').empty();
         renderTeamPlayers(teamNamePosition);
     });
 
     // On click for populating stat card
-    $(document).on("click", ".active-player", function(){
+    $(document).on("click", ".active-player", function () {
         var playerName = this.textContent;
 
         $(".card").css("display", "block")
@@ -55,11 +81,11 @@ $(document).ready(function() {
     $('.dropdown-trigger').dropdown();
 
     // Update slider value as it moves
-    $("#slider").on("input", function() {
+    $("#slider").on("input", function () {
         updateSlider();
     });
 
-    $("#start-btn").on("click", function() {
+    $("#start-btn").on("click", function () {
         $("#start-content").addClass("animated flipOutX");
         $("#start-content").delay(800).hide(0);
         $("#main-content").delay(1000).show(0);
@@ -68,14 +94,14 @@ $(document).ready(function() {
 
     // Drag and Drop functions
 
-    window.drag = function(ev) {
+    window.drag = function (ev) {
         ev.dataTransfer.setData("text", ev.target.id);
 
         $("#dropzone").addClass("drop-pulse");
         $(".active-player").addClass("animated infinite rubberBand");
     };
 
-    window.drop = function(ev, el) {
+    window.drop = function (ev, el) {
         ev.preventDefault();
 
         var data = ev.dataTransfer.getData("text");
@@ -83,11 +109,11 @@ $(document).ready(function() {
         stopAnimation();
     };
 
-    window.dragend = function(ev) {
+    window.dragend = function (ev) {
         stopAnimation();
     };
 
-    window.allowDrop = function(ev) {
+    window.allowDrop = function (ev) {
         ev.preventDefault();
     };
 
@@ -95,12 +121,12 @@ $(document).ready(function() {
         $(".active-player").removeClass("animated infinite rubberBand");
         $("#dropzone").removeClass("drop-pulse");
     };
-    
+
     // Input from salary slider
     function updateSlider() {
         var val = $("#slider").val();
 
-        $("#salary-cap-box").html(`$${addCommas(val)}`);  
+        $("#salary-cap-box").html(`$${addCommas(val)}`);
         luxuryTax();
     };
 
@@ -115,8 +141,8 @@ $(document).ready(function() {
         $.ajax({
             url: 'api/bulls_data',
             type: 'GET'
-        }).then(function(data){
-            $.get("/api/bulls_data", function(data){
+        }).then(function (data) {
+            $.get("/api/bulls_data", function (data) {
                 for (var i = 0; i < data.length; i++) {
                     var newDiv = $("<div>");
                     newDiv.addClass("active-player");
@@ -125,7 +151,7 @@ $(document).ready(function() {
                         ondragstart: "drag(event)",
                         ondragend: "dragend(event)",
                         id: "bullsPlayer-" + [i]
-                    });   
+                    });
 
                     var currency = (`${data[i].player_salary}`);
 
@@ -133,35 +159,39 @@ $(document).ready(function() {
 
                     newDiv.append('<i class="fas fa-times drop"></i>');
                     if (i <= 11) {
-                        $("#dropzone").append(newDiv); 
-                        activeTeam.push(data[i]); 
-                        fullTeam.push(data[i]);                        
+                        $("#dropzone").append(newDiv);
+                        activeTeam.push(data[i]);
+                        fullTeam.push(data[i]);
                     }
                     else {
                         $("#dropzone1").append(newDiv);
-                        fullTeam.push(data[i]);    
+                        fullTeam.push(data[i]);
                     }
                 };
                 addingPpg();
-                teamSalary();   
+                teamSalary();
             });
-            
+
         });
     };
 
     // Drop player from roster when user clicks on the x
-    function dropPlayer(dropped){
+    function dropPlayer(dropped) {
         $("#available-block").append(dropped);
-        teamSalary();        
     };
 
-    function renderTeamPlayers(num){
-        $.get("/api/league_data", function(data){
+    // function dropStatCard(dropStat) {
+    //     dropStat.hide();
+    //     renderRoster();
+    // };
+
+    function renderTeamPlayers(num) {
+        $.get("/api/league_data", function (data) {
             for (var i = 0; i < data.length; i++) {
-                if (data[i].team_name == num || data[i].player_position == num || data[i].player_position == `${num}/C` || data[i].player_position == `${num}/F` || data[i].player_position == `${num}/G`){
+                if (data[i].team_name == num || data[i].player_position == num || data[i].player_position == `${num}/C` || data[i].player_position == `${num}/F` || data[i].player_position == `${num}/G`) {
                     var newDiv = $("<div>");
                     newDiv.addClass("active-player");
-        
+
                     newDiv.attr({
                         draggable: "true",
                         ondragstart: "drag(event)",
@@ -179,33 +209,34 @@ $(document).ready(function() {
         });
     };
 
-function renderStatCard(num){
-    $.get("/api/league_data", function(data){
-        // console.log('working');
-        for (var i = 0; i < data.length; i++) {
-            if (num.includes(data[i].player_name)){            
-                var currency = (`${data[i].player_salary}`);
+    function renderStatCard(num) {
+        $.get("/api/league_data", function (data) {
+            // console.log('working');
+            for (var i = 0; i < data.length; i++) {
+                if (num.includes(data[i].player_name)) {
+                    var currency = (`${data[i].player_salary}`);
 
-                $('.player-card').append(
-                    `Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} 
-                    Position: ${data[i].player_position} Team Name: ${data[i].team_name} 
+                    $('.player-card').append(
+                        `Name: ${data[i].player_name}<br> Year: 2018/2019 <br> Salary: $${addCommas(currency)}<br> 
+                    Position: ${data[i].player_position}<br> Team Name: ${data[i].team_name}<br>
                     Points Per Game: ${data[i].ppg}`);
+                    $('.player-card').append('<i class="fas fa-times drop"></i>');
+                };
             };
-        };
-    });
+        });
 
-    $.get("/api/bulls_data", function(data){
-        for (var i = 0; i < data.length; i++) {
-            if (num.includes(data[i].player_name)){
-                var currency = (`${data[i].player_salary}`);
+        $.get("/api/bulls_data", function (data) {
+            for (var i = 0; i < data.length; i++) {
+                if (num.includes(data[i].player_name)) {
+                    var currency = (`${data[i].player_salary}`);
 
-                $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
+                    $('.player-card').append(`Name: ${data[i].player_name}<br> Year: 2018/2019 <br>Salary: $${addCommas(currency)}<br> Position: ${data[i].player_position}<br> Team Name: ${data[i].team_name}<br> Points Per Game: ${data[i].ppg}`);
 
-                $('.player-card').append('<i class="fas fa-times drop"></i>');
+                    $('.player-card').append('<i class="fas fa-times drop"></i>');
+                };
             };
-        };
-    });
-};
+        });
+    };
     // Pull from array, placeholder code for until we link up API data
     function renderTeams() {
         for (var i = 0; i < nbaTeams.length; i++) {
@@ -216,7 +247,7 @@ function renderStatCard(num){
 
             newLink.append(`${nbaTeams[i]}`)
             newTeam.append(newLink);
-            
+
             $("#dropdown1").append(newTeam);
         };
     };
@@ -235,21 +266,17 @@ function renderStatCard(num){
         };
     };
 
-    function addingPpg(){
-            var teamScore = 0;
-            console.log(activeTeam);
-
-            for (var i = 0; i < activeTeam.length; i++) {
-                // console.log(parseInt(activeTeam[i].ppg));
-                teamScore += parseInt(activeTeam[i].ppg);
-            };
-            $("#user-score").text(teamScore);
+    function addingPpg() {
+        teamScore = 0;
+        for (var i = 0; i < activeTeam.length; i++) {
+            // console.log(parseInt(activeTeam[i].ppg));
+            teamScore += parseInt(activeTeam[i].ppg);
         };
-    
+        $("#user-score").text(teamScore);
+    };
 
-    function teamSalary(){
-        var salary = 0;
-        console.log(fullTeam)
+    function teamSalary() {
+        salary = 0;
 
         for (var i = 0; i < fullTeam.length; i++) {
             // console.log(parseInt(fullTeam[i].ppg));
