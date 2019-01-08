@@ -215,13 +215,13 @@ $(document).ready(function() {
           var currency = `${data[i].player_salary}`;
 
           $(".player-card").append(
-            `Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(
+            `Name: ${data[i].player_name} <br>Year: 2018/2019 Salary: $${addCommas(
               currency
             )} 
-                    Position: ${data[i].player_position} Team Name: ${
+                    <br>Position: ${data[i].player_position} <br>Team Name: ${
               data[i].team_name
             } 
-                    Points Per Game: ${data[i].ppg}`
+                    <br>Points Per Game: ${data[i].ppg}`
           );
         }
       }
@@ -233,11 +233,11 @@ $(document).ready(function() {
           var currency = `${data[i].player_salary}`;
 
           $(".player-card").append(
-            `Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(
+            `Name: ${data[i].player_name} <br>Year: 2018/2019 <br>Salary: $${addCommas(
               currency
-            )} Position: ${data[i].player_position} Team Name: ${
+            )} <br>Position: ${data[i].player_position} <br>Team Name: ${
               data[i].team_name
-            } Points Per Game: ${data[i].ppg}`
+            } <br>Points Per Game: ${data[i].ppg}`
           );
 
           $(".player-card").append('<i class="fas fa-times drop"></i>');
