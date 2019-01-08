@@ -14,7 +14,8 @@ $(document).ready(function() {
     // Positions
     var positions = ["C", "F", "G"];
 
-    var userTeam = [];
+    var activeTeam = [];
+    var fullTeam = [];
     
     // On click event for dropping players
     $(document).on("click", ".drop", function(){
@@ -123,10 +124,12 @@ $(document).ready(function() {
                     newDiv.append('<i class="fas fa-times drop"></i>');
                     if (i <= 11) {
                         $("#dropzone").append(newDiv); 
-                        userTeam.push(data[i]);                          
+                        activeTeam.push(data[i]); 
+                        fullTeam.push(data[i]);                        
                     }
                     else {
                         $("#dropzone1").append(newDiv);
+                        fullTeam.push(data[i]);    
                     }
                 };
                 addingPpg();
@@ -227,12 +230,11 @@ function renderStatCard(num){
     };
 
     function addingPpg(){
-        // console.log('working');
             var teamScore = 0;
-            // console.log(userTeam);
-            for (var i = 0; i < userTeam.length; i++) {
-                // console.log(parseInt(userTeam[i].ppg));
-                teamScore += parseInt(userTeam[i].ppg);
+            console.log(activeTeam);
+            for (var i = 0; i < activeTeam.length; i++) {
+                // console.log(parseInt(activeTeam[i].ppg));
+                teamScore += parseInt(activeTeam[i].ppg);
             };
             $("#user-score").text(teamScore);
         };
@@ -240,10 +242,11 @@ function renderStatCard(num){
 
     function teamSalary(){
         var salary = 0;
-        for (var i = 0; i < userTeam.length; i++) {
-            // console.log(parseInt(userTeam[i].ppg));
-            salary += parseInt(userTeam[i].player_salary);
-            console.log(salary);
+        console.log(fullTeam)
+        for (var i = 0; i < fullTeam.length; i++) {
+            // console.log(parseInt(fullTeam[i].ppg));
+            salary += parseInt(fullTeam[i].player_salary);
+            // console.log(salary);
         };
         $("#team-salary").text(`$${addCommas(salary)}`);
     }
