@@ -106,7 +106,6 @@ $(document).ready(function() {
             type: 'GET'
         }).then(function(data){
             $.get("/api/bulls_data", function(data){
-
                 for (var i = 0; i < data.length; i++) {
                     var newDiv = $("<div>");
                     newDiv.addClass("active-player");
@@ -141,32 +140,28 @@ $(document).ready(function() {
 
     // Drop player from roster when user clicks on the x
     function dropPlayer(dropped){
-        console.log('worked');
-        $("#available-block").append(dropped);
-        
-        };
+        $("#available-block").append(dropped);        
+    };
 
     function renderTeamPlayers(num){
         $.get("/api/league_data", function(data){
             for (var i = 0; i < data.length; i++) {
                 if (data[i].team_name == num || data[i].player_position == num || data[i].player_position == `${num}/C` || data[i].player_position == `${num}/F` || data[i].player_position == `${num}/G`){
-                var newDiv = $("<div>");
-                newDiv.addClass("active-player");
-    
-                newDiv.attr({
-                    draggable: "true",
-                    ondragstart: "drag(event)",
-                    ondragend: "dragend(event)",
-                    id: "player-" + [i]
-                });
+                    var newDiv = $("<div>");
+                    newDiv.addClass("active-player");
+        
+                    newDiv.attr({
+                        draggable: "true",
+                        ondragstart: "drag(event)",
+                        ondragend: "dragend(event)",
+                        id: "player-" + [i]
+                    });
 
-                var currency = (`${data[i].player_salary}`);
+                    var currency = (`${data[i].player_salary}`);
 
-                newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
-
-                newDiv.append('<i class="fas fa-times drop"></i>');
-
-                $("#available-block").append(newDiv);
+                    newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
+                    newDiv.append('<i class="fas fa-times drop"></i>');
+                    $("#available-block").append(newDiv);
                 }
             }
         });
@@ -176,27 +171,25 @@ function renderStatCard(num){
     $.get("/api/league_data", function(data){
         // console.log('working');
         for (var i = 0; i < data.length; i++) {
-            if (num.includes(data[i].player_name)){
-            
-            var currency = (`${data[i].player_salary}`);
+            if (num.includes(data[i].player_name)){            
+                var currency = (`${data[i].player_salary}`);
 
-            $('.player-card').append(
-                `Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} 
-                Position: ${data[i].player_position} Team Name: ${data[i].team_name} 
-                Points Per Game: ${data[i].ppg}`);
-   };
- };
-});
+                $('.player-card').append(
+                    `Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} 
+                    Position: ${data[i].player_position} Team Name: ${data[i].team_name} 
+                    Points Per Game: ${data[i].ppg}`);
+            };
+        };
+    });
+
     $.get("/api/bulls_data", function(data){
         for (var i = 0; i < data.length; i++) {
             if (num.includes(data[i].player_name)){
-            
-            var currency = (`${data[i].player_salary}`);
+                var currency = (`${data[i].player_salary}`);
 
-            $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
+                $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
 
-            $('.player-card').append('<i class="fas fa-times drop"></i>');
-
+                $('.player-card').append('<i class="fas fa-times drop"></i>');
             };
         };
     });
