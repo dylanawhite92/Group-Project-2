@@ -255,7 +255,7 @@ function renderStatCard(num){
     // reg ex removes the comma separators from the display, because otherwise the number would stop at the first comma
     function luxuryTax() {
         var salaryCap = parseInt($("#slider").val());
-        var userSalary = parseInt($("#team-salary").text().replace(/,/g, ""));
+        var userSalary = parseInt($("#team-salary").text().replace(/\$|,/g, ""));
 
 
         var luxuryTax = userSalary - salaryCap;
