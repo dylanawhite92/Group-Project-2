@@ -267,7 +267,7 @@ function renderStatCard(num){
     function luxuryTax() {
         var salaryCap = parseInt($("#slider").val());
         var userSalary = parseInt($("#team-salary").text().replace(/\$|,/g, ""));
-        var luxuryTax = userSalary - salaryCap;
+        var luxuryTax = salaryCap - userSalary;
 
         if (luxuryTax > 0) {
             $("#luxury-tax").text("$0");
