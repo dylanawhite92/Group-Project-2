@@ -18,6 +18,7 @@ body, #dropzone, #available-block {
 #divider {
     border-right: 1px solid red;
     border-left: 1px solid red;
+    min-height: 758px;
 }
 
 /* Added because these are the only elements that don't get a drop shadow */
