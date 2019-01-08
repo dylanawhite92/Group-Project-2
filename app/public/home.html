@@ -28,95 +28,95 @@
         </div>
         
     </nav>
-    
-        <div class="container" id="body-content">
-            <div class="section" id="action-border">
-    
-                <div class="row">
+        
+    <div class="container" id="body-content">
+        <div class="section" id="action-border">
+
+            <div class="row">
+                <div class="col s12 m6">
                     <div class="col s12 m6">
-                        <div class="col s12 m6">
-                            <div id="action-block">
-                                <h5>Your Team</h5>
-                                <div id="dropzone" ondrop="drop(event, this)" ondragover="allowDrop(event)"></div>
-                            </div>
-                            <div id="action-block">
-                                <h5>Inactives</h5>
-                                <div id="dropzone1" ondrop="drop(event, this)" ondragover="allowDrop(event)"></div>
-                            </div>
-    
-                            <!-- Disabled button to show need for validation -->
-                            <a id="save-team-btn" class="btn disabled"><i class="material-icons right">directions_run</i>Save Team</a>      
+                        <div id="action-block">
+                            <h5>Your Team</h5>
+                            <div id="dropzone" ondrop="drop(event, this)" ondragover="allowDrop(event)"></div>
                         </div>
-                        <div class="col s12 m6" id="divider">
-                            <h5>Search Players to Trade</h5>
+                        <div id="action-block">
+                            <h5>Inactives</h5>
+                            <div id="dropzone1" ondrop="drop(event, this)" ondragover="allowDrop(event)"></div>
+                        </div>
 
-                            <div class="dropdown-container">
+                        <!-- Disabled button to show need for validation -->
+                        <a id="save-team-btn" class="btn disabled"><i class="material-icons right">directions_run</i>Save Team</a>      
+                    </div>
+                    <div class="col s12 m6" id="divider">
+                        <h5>Search Players to Trade</h5>
+
+                        <div class="dropdown-container">
+                            <!-- Dropdown Trigger -->
+                            <a class='dropdown-trigger btn red darken-4' href='#' data-target='dropdown1'>By Team<i class="material-icons right search-icon">play_for_work</i></a>
+                            <!-- Dropdown Structure -->
+                            <ul id='dropdown1' class='dropdown-content row amber lighten-4'>
+                            </ul>
+                        </div>
+
+                        <div class="dropdown-container">
                                 <!-- Dropdown Trigger -->
-                                <a class='dropdown-trigger btn red darken-4' href='#' data-target='dropdown1'>By Team<i class="material-icons right search-icon">play_for_work</i></a>
-                                <!-- Dropdown Structure -->
-                                <ul id='dropdown1' class='dropdown-content row amber lighten-4'>
-                                </ul>
-                            </div>
+                            <a class='dropdown-trigger btn red darken-4' href='#' data-target='dropdown2'>By Position<i class="material-icons right search-icon">play_for_work</i></a>
+                            <!-- Dropdown Structure -->
+                            <ul id='dropdown2' class='dropdown-content amber lighten-4'>
+                            </ul>
+                        </div>
+                        
+                        <div class="card red darken-4">
+                            <div class="card-content white-text player-card"></div>
+                        </div>
 
-                            <div class="dropdown-container">
-                                    <!-- Dropdown Trigger -->
-                                <a class='dropdown-trigger btn red darken-4' href='#' data-target='dropdown2'>By Position<i class="material-icons right search-icon">play_for_work</i></a>
-                                <!-- Dropdown Structure -->
-                                <ul id='dropdown2' class='dropdown-content amber lighten-4'>
-                                </ul>
-                            </div>
-                            
-                            <div class="card red darken-4">
-                                <div class="card-content white-text player-card"></div>
-                            </div>
-
-                            <h5>Salary Cap</h5>
-                            <div id="salary-container">
-                                <input id="slider" class="browser-default" type="range" min="10000000" max="100000000" value="70000000" step="1000000">
-                                <output id="salary-cap-box">$70,000,000</output>
-                            </div>    
+                        <h5>Salary Cap</h5>
+                        <div id="salary-container">
+                            <input id="slider" class="browser-default" type="range" min="10000000" max="100000000" value="70000000" step="1000000">
+                            <output id="salary-cap-box">$70,000,000</output>
+                        </div>    
 
 
-                            <h5>Available Players</h5>
+                        <h5>Available Players</h5>
 
-                            <div id="available-block"></div>
+                        <div id="available-block"></div>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div id="top-points" class="row">
+                        <div class="col s12 m6">
+                            <h5>Your Score</h5>
+                            <div id="user-score" class="points-box">112.5</div>
+                        </div>
+                        <div class="col s12 m6">
+                            <h5>Opponent's Score</h5>
+                            <div id="enemy-score" class="points-box">112.5</div>
+                        </div>
+                        <div class="col s12 m6">
+                            <h5>Your Salary</h5>
+                            <div id="team-salary" class="points-box">$80,000,000</div>
+                        </div>
+                        <div class="col s12 m6">
+                            <h5>Luxury Tax</h5>
+                            <div id="luxury-tax" class="points-box">112.5</div>
                         </div>
                     </div>
-                    <div class="col s12 m6">
-                        <div id="top-points" class="row">
-                            <div class="col s12 m6">
-                                <h5>Your Score</h5>
-                                <div id="user-score" class="points-box">112.5</div>
-                            </div>
-                            <div class="col s12 m6">
-                                <h5>Opponent's Score</h5>
-                                <div id="enemy-score" class="points-box">112.5</div>
-                            </div>
-                            <div class="col s12 m6">
-                                <h5>Your Salary</h5>
-                                <div id="team-salary" class="points-box">$80,000,000</div>
-                            </div>
-                            <div class="col s12 m6">
-                                <h5>Luxury Tax</h5>
-                                <div id="luxury-tax" class="points-box">112.5</div>
-                            </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <h5>Wins | Losses</h5>
+                            <div id="win-loss" class="points-box">112.5</div>
                         </div>
-                        <div class="row">
-                            <div class="col s12">
-                                <h5>Wins | Losses</h5>
-                                <div id="win-loss" class="points-box">112.5</div>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <!-- Disabled button to show need for validation -->
+                            <a id="make-moves-btn" class="btn disabled"><i class="material-icons right">directions_run</i>Make Moves</a>
                         </div>
-                        <div class="row">
-                            <div class="col s12">
-                                <!-- Disabled button to show need for validation -->
-                                <a id="make-moves-btn" class="btn disabled"><i class="material-icons right">directions_run</i>Make Moves</a>
-                            </div>
-                        </div>
-                    </div>         
-                </div>
+                    </div>
+                </div>         
             </div>
         </div>
+    </div>
         
     <!-- jQuery Reference -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" 

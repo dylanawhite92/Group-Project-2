@@ -46,6 +46,11 @@ form {
     position: absolute;
 }
 
+.indent {
+    text-indent: 5%;
+    line-height: 20px;
+}
+
 .btn {
     margin: 5px;
     width: 80%;
@@ -91,10 +96,6 @@ form {
 
 #make-moves-btn {
     width: 40%;
-}
-
-#save-team-btn {
-
 }
 
 #available-block {

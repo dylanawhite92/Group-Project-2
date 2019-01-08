@@ -144,7 +144,8 @@ $(document).ready(function() {
 
     // Drop player from roster when user clicks on the x
     function dropPlayer(dropped){
-        $("#available-block").append(dropped);        
+        $("#available-block").append(dropped);
+        teamSalary();        
     };
 
     function renderTeamPlayers(num){
