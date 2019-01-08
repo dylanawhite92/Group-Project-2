@@ -59,6 +59,13 @@ $(document).ready(function() {
         updateSlider();
     });
 
+    $("#start-btn").on("click", function() {
+        $("#start-content").addClass("animated flipOutX");
+        $("#start-content").delay(800).hide(0);
+        $("#main-content").delay(1000).show(0);
+        $("#main-content").addClass("animated bounceIn");
+    });
+
     // Drag and Drop functions
 
     window.drag = function(ev) {
@@ -144,7 +151,8 @@ $(document).ready(function() {
 
     // Drop player from roster when user clicks on the x
     function dropPlayer(dropped){
-        $("#available-block").append(dropped);        
+        $("#available-block").append(dropped);
+        teamSalary();        
     };
 
     function renderTeamPlayers(num){
@@ -166,8 +174,8 @@ $(document).ready(function() {
                     newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
                     newDiv.append('<i class="fas fa-times drop"></i>');
                     $("#available-block").append(newDiv);
-                }
-            }
+                };
+            };
         });
     };
 
@@ -230,6 +238,7 @@ function renderStatCard(num){
     function addingPpg(){
             var teamScore = 0;
             console.log(activeTeam);
+
             for (var i = 0; i < activeTeam.length; i++) {
                 // console.log(parseInt(activeTeam[i].ppg));
                 teamScore += parseInt(activeTeam[i].ppg);
@@ -241,14 +250,16 @@ function renderStatCard(num){
     function teamSalary(){
         var salary = 0;
         console.log(fullTeam)
+
         for (var i = 0; i < fullTeam.length; i++) {
             // console.log(parseInt(fullTeam[i].ppg));
             salary += parseInt(fullTeam[i].player_salary);
             // console.log(salary);
         };
+
         $("#team-salary").text(`$${addCommas(salary)}`);
         luxuryTax();
-    }
+    };
 
     // Update luxury tax based on both salary cap and user team's salary total
     // #team-salary is .text() because it's the content of a div, and not a value on an input
@@ -256,25 +267,15 @@ function renderStatCard(num){
     function luxuryTax() {
         var salaryCap = parseInt($("#slider").val());
         var userSalary = parseInt($("#team-salary").text().replace(/\$|,/g, ""));
-
-
         var luxuryTax = userSalary - salaryCap;
-
-        // console.log(salaryCap);
-        // console.log(userSalary);
-        // console.log(luxuryTax);
 
         if (luxuryTax > 0) {
             $("#luxury-tax").text("$0");
         }
         else {
             $("#luxury-tax").text(`$${addCommas(Math.abs(luxuryTax))}`);
-        }
-    }
+        };
+    };
 
     renderPage();
-
-    // $.get("/api/boxscore", function(res) {
-    //     console.log(res);
-    //   });
 });

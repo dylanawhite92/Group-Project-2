@@ -1,8 +1,12 @@
 body {
     background-image: url("../images/background.png");
     color: white;
-    /* text-align: center; */
     text-shadow: 2px 2px 6px black;
+    min-height: 888.25px;
+}
+
+#start-btn {
+    width: 50%;
 }
 
 body, #dropzone, #available-block {
@@ -46,6 +50,11 @@ form {
     position: absolute;
 }
 
+.indent {
+    text-indent: 5%;
+    line-height: 20px;
+}
+
 .btn {
     margin: 5px;
     width: 80%;
@@ -85,7 +94,7 @@ form {
     border-radius: 10px;
 }
 
-.card, #make-moves-btn, #save-team-btn {
+.card, #make-moves-btn, #save-team-btn, #start-btn {
     margin-top: 20px;
 }
 
@@ -93,8 +102,14 @@ form {
     width: 40%;
 }
 
-#save-team-btn {
+#start-content {
+    display: block;
+    padding-left: 5px;
+    padding-right: 5px;
+}
 
+#main-content {
+    display: none;
 }
 
 #available-block {
@@ -221,5 +236,9 @@ input[type=range]+ .thumb.active {
 @media only screen and (max-width: 600px) {
     .brand-logo {
         font-size: 18px!important;
+    }
+
+    #start-btn {
+        width: 70%;
     }
 }
