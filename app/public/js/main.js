@@ -48,6 +48,7 @@ $(document).ready(function() {
         renderRoster();
         renderTeams();
         renderPositions();
+        luxuryTax();
     };
 
     // Dropdown button functionality
@@ -93,6 +94,7 @@ $(document).ready(function() {
         var val = $("#slider").val();
 
         $("#salary-cap-box").html(`$${addCommas(val)}`);  
+        luxuryTax();
     };
 
     // Prettify salary by adding commas with reg ex
@@ -245,6 +247,11 @@ function renderStatCard(num){
             // console.log(salary);
         };
         $("#team-salary").text(`$${addCommas(salary)}`);
+    }
+
+    function luxuryTax() {
+        var salaryCap = parseInt($("#slider").val());
+        console.log(salaryCap);
     }
 
     renderPage();
