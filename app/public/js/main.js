@@ -187,9 +187,9 @@ function renderStatCard(num){
                 var currency = (`${data[i].player_salary}`);
 
                 $('.player-card').append(
-                    `Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} 
-                    Position: ${data[i].player_position} Team Name: ${data[i].team_name} 
-                    Points Per Game: ${data[i].ppg}`);
+                    `Name: ${data[i].player_name} <br>Year: 2018/2019 <br>Salary: $${addCommas(currency)} 
+                    <br>Position: ${data[i].player_position} <br>Team Name: ${data[i].team_name} 
+                    <br>Points Per Game: ${data[i].ppg}`);
             };
         };
     });
@@ -199,7 +199,7 @@ function renderStatCard(num){
             if (num.includes(data[i].player_name)){
                 var currency = (`${data[i].player_salary}`);
 
-                $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
+                $('.player-card').append(`Name: ${data[i].player_name} <br>Year: 2018/2019 <br>Salary: $${addCommas(currency)} <br>Position: ${data[i].player_position} <br>Team Name: ${data[i].team_name} <br>Points Per Game: ${data[i].ppg}`);
 
                 $('.player-card').append('<i class="fas fa-times drop"></i>');
             };
