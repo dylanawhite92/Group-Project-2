@@ -247,11 +247,29 @@ function renderStatCard(num){
             // console.log(salary);
         };
         $("#team-salary").text(`$${addCommas(salary)}`);
+        luxuryTax();
     }
 
+    // Update luxury tax based on both salary cap and user team's salary total
+    // #team-salary is .text() because it's the content of a div, and not a value on an input
+    // reg ex removes the comma separators from the display, because otherwise the number would stop at the first comma
     function luxuryTax() {
         var salaryCap = parseInt($("#slider").val());
+        var userSalary = parseInt($("#team-salary").text().replace(/,/g, ""));
+
+
+        var luxuryTax = userSalary - salaryCap;
+
         console.log(salaryCap);
+        console.log(userSalary);
+        console.log(luxuryTax);
+
+        if (luxuryTax > 0) {
+            $("#luxury-tax").text("$0");
+        }
+        else {
+            $("#luxury-tax").text(`$${addCommas(Math.abs(luxuryTax))}`);
+        }
     }
 
     renderPage();
