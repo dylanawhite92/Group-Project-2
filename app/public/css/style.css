@@ -1,7 +1,7 @@
 body {
     background-image: url("../images/background.png");
     color: white;
-    text-align: center;
+    /* text-align: center; */
     text-shadow: 2px 2px 6px black;
 }
 
@@ -77,6 +77,7 @@ form {
 
 #body-content {
     width: 90%!important;
+    text-align: center;
     min-height: 520px;
     margin-top: 1rem;
     background-color: #000000b3;
@@ -104,6 +105,7 @@ form {
 }
 
 .active-player {
+    border: solid black 3px;
     background-image: linear-gradient(to bottom right, red, black);
     display: block;
     text-align: left;
@@ -175,7 +177,7 @@ background-color: black;
 
 }
 
-.active-player, #salary-cap-box, .points-box, #dropzone, #dropzone1, #available-block {
+#salary-cap-box, .points-box, #dropzone, #dropzone1, #available-block {
     border: solid rgb(183,28,28) 3px;
     padding: 4px;
 }
@@ -213,4 +215,10 @@ form.login {
 /* Prevents materialize default slider from showing up */
 input[type=range]+ .thumb.active {
     display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .brand-logo {
+        font-size: 18px!important;
+    }
 }
