@@ -22,6 +22,7 @@ $(document).ready(function() {
         var dropped = $(this).parent();
         console.log(dropped);
         dropPlayer(dropped);
+
     });
 
     $(document).on("click", ".black-text", function(){
@@ -38,6 +39,7 @@ $(document).ready(function() {
 
         $('.player-card').empty();
         renderStatCard(playerName);
+        teamSalary();
     });
 
 
