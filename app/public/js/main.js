@@ -17,9 +17,11 @@ $(document).ready(function() {
     var userTeam = [];
     
     // On click event for dropping players
-    // $(document).on("click", ".drop", function(){
-    //     dropPlayer();
-    // });
+    $(document).on("click", ".drop", function(){
+        var dropped = $(this).parent();
+        console.log(dropped);
+        dropPlayer(dropped);
+    });
 
     $(document).on("click", ".black-text", function(){
         var teamNamePosition = this.textContent;
@@ -134,15 +136,17 @@ $(document).ready(function() {
     };
 
     // Drop player from roster when user clicks on the x
-    // function dropPlayer(){
+    function dropPlayer(dropped){
+        console.log('worked');
     //     var rosterSpotData = $(this)
     //     $.ajax({
     //         method: "DELETE",
     //         url: "/api/bulls/" + id
     //       })
     //         .then(renderRoster);
-    //     $('.active-player').remove();
-    //     }
+        dropped.remove();
+        // console.log(dropped);
+        };
 
     function renderTeamPlayers(num){
         $.get("/api/league_data", function(data){
@@ -229,18 +233,18 @@ function renderStatCard(num){
     };
 
     function addingPpg(){
-        console.log('working');
+        // console.log('working');
             var teamScore = 0;
-            console.log(userTeam);
+            // console.log(userTeam);
             for (var i = 0; i < userTeam.length; i++) {
-                console.log(parseInt(userTeam[i].ppg));
+                // console.log(parseInt(userTeam[i].ppg));
                 teamScore += parseInt(userTeam[i].ppg);
             };
             $("#user-score").text(teamScore);
         };
     renderPage();
 
-    $.get("/api/boxscore", function(res) {
-        console.log(res);
-      });
+    // $.get("/api/boxscore", function(res) {
+    //     console.log(res);
+    //   });
 });
