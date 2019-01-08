@@ -260,9 +260,9 @@ function renderStatCard(num){
 
         var luxuryTax = userSalary - salaryCap;
 
-        console.log(salaryCap);
-        console.log(userSalary);
-        console.log(luxuryTax);
+        // console.log(salaryCap);
+        // console.log(userSalary);
+        // console.log(luxuryTax);
 
         if (luxuryTax > 0) {
             $("#luxury-tax").text("$0");
