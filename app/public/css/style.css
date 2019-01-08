@@ -5,6 +5,10 @@ body {
     text-shadow: 2px 2px 6px black;
 }
 
+#start-btn {
+    width: 50%;
+}
+
 body, #dropzone, #available-block {
     background-size: cover;
     background-position: center;
@@ -90,12 +94,20 @@ form {
     border-radius: 10px;
 }
 
-.card, #make-moves-btn, #save-team-btn {
+.card, #make-moves-btn, #save-team-btn, #start-btn {
     margin-top: 20px;
 }
 
 #make-moves-btn {
     width: 40%;
+}
+
+#start-content {
+    display: block;
+}
+
+#main-content {
+    display: none;
 }
 
 #available-block {
