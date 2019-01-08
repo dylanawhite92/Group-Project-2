@@ -1,8 +1,8 @@
 body {
     background-image: url("../images/background.png");
     color: white;
-    /* text-align: center; */
     text-shadow: 2px 2px 6px black;
+    min-height: 888.25px;
 }
 
 #start-btn {
@@ -104,6 +104,8 @@ form {
 
 #start-content {
     display: block;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 #main-content {
@@ -234,5 +236,9 @@ input[type=range]+ .thumb.active {
 @media only screen and (max-width: 600px) {
     .brand-logo {
         font-size: 18px!important;
+    }
+
+    #start-btn {
+        width: 70%;
     }
 }

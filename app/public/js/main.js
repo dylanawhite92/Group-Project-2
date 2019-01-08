@@ -59,6 +59,13 @@ $(document).ready(function() {
         updateSlider();
     });
 
+    $("#start-btn").on("click", function() {
+        $("#start-content").addClass("animated flipOutX");
+        $("#start-content").delay(800).hide(0);
+        $("#main-content").delay(1000).show(0);
+        $("#main-content").addClass("animated bounceIn");
+    });
+
     // Drag and Drop functions
 
     window.drag = function(ev) {
