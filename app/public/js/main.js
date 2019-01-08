@@ -129,7 +129,8 @@ $(document).ready(function() {
                         $("#dropzone1").append(newDiv);
                     }
                 };
-                addingPpg();   
+                addingPpg();
+                teamSalary();   
             });
             
         });
@@ -189,7 +190,7 @@ function renderStatCard(num){
             
             var currency = (`${data[i].player_salary}`);
 
-            $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${currency} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
+            $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
 
             $('.player-card').append('<i class="fas fa-times drop"></i>');
             };
@@ -235,6 +236,18 @@ function renderStatCard(num){
             };
             $("#user-score").text(teamScore);
         };
+    
+
+    function teamSalary(){
+        var salary = 0;
+        for (var i = 0; i < userTeam.length; i++) {
+            // console.log(parseInt(userTeam[i].ppg));
+            salary += parseInt(userTeam[i].player_salary);
+            console.log(salary);
+        };
+        $("#team-salary").text(`$${addCommas(salary)}`);
+    }
+
     renderPage();
 
     // $.get("/api/boxscore", function(res) {
