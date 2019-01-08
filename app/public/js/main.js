@@ -38,13 +38,40 @@ $(document).ready(function() {
 
   var activeTeam = [];
   var fullTeam = [];
+  var teamScore = 0; 
+var salary = 0
 
-  // On click event for dropping players
-  $(document).on("click", ".drop", function() {
-    var dropped = $(this).parent();
-    console.log(dropped);
-    dropPlayer(dropped);
-  });
+    // On click event for dropping players
+    $(document).on("click", ".drop", function () {
+        var dropped = $(this).parent();
+        var nameText = dropped[0].innerText;        
+        console.log(nameText);
+        dropPlayer(dropped);
+        $.each(activeTeam, function(i){
+            console.log('working');           
+            if(nameText.includes(activeTeam[i].player_name)) {
+                activeTeam.splice(i,1);
+                return false;
+            }
+        });
+        addingPpg();
+        $.each(fullTeam, function(i){
+            console.log('working');           
+            if(nameText.includes(fullTeam[i].player_name)) {
+                fullTeam.splice(i,1);
+                return false;
+            }
+        });
+        console.log(activeTeam);
+        console.log(fullTeam);
+        teamSalary();
+    });
+
+    // $(document).on("click", ".drop1", function () {
+    //     var dropStat = $(this).parent();
+    //     console.log(dropStat);
+    //     dropStatCard(dropStat);
+    // });
 
   $(document).on("click", ".black-text", function() {
     var teamNamePosition = this.textContent;
@@ -60,7 +87,6 @@ $(document).ready(function() {
 
     $(".player-card").empty();
     renderStatCard(playerName);
-    teamSalary();
   });
 
   // Dynamically load page
@@ -174,8 +200,12 @@ $(document).ready(function() {
   // Drop player from roster when user clicks on the x
   function dropPlayer(dropped) {
     $("#available-block").append(dropped);
-    teamSalary();
   }
+
+    // function dropStatCard(dropStat) {
+    //     dropStat.hide();
+    //     renderRoster();
+    // };
 
   function renderTeamPlayers(num) {
     $.get("/api/league_data", function(data) {
@@ -275,7 +305,7 @@ $(document).ready(function() {
   }
 
   function addingPpg() {
-    var teamScore = 0;
+    teamScore = 0;
     console.log(activeTeam);
 
     for (var i = 0; i < activeTeam.length; i++) {
@@ -286,7 +316,7 @@ $(document).ready(function() {
   }
 
   function teamSalary() {
-    var salary = 0;
+    salary = 0;
     console.log(fullTeam);
 
     for (var i = 0; i < fullTeam.length; i++) {
