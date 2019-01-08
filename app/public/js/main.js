@@ -138,14 +138,8 @@ $(document).ready(function() {
     // Drop player from roster when user clicks on the x
     function dropPlayer(dropped){
         console.log('worked');
-    //     var rosterSpotData = $(this)
-    //     $.ajax({
-    //         method: "DELETE",
-    //         url: "/api/bulls/" + id
-    //       })
-    //         .then(renderRoster);
-        dropped.remove();
-        // console.log(dropped);
+        $("#available-block").append(dropped);
+        
         };
 
     function renderTeamPlayers(num){
