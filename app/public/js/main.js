@@ -22,6 +22,7 @@ $(document).ready(function() {
         var dropped = $(this).parent();
         console.log(dropped);
         dropPlayer(dropped);
+
     });
 
     $(document).on("click", ".black-text", function(){
@@ -38,6 +39,7 @@ $(document).ready(function() {
 
         $('.player-card').empty();
         renderStatCard(playerName);
+        teamSalary();
     });
 
 
@@ -46,6 +48,7 @@ $(document).ready(function() {
         renderRoster();
         renderTeams();
         renderPositions();
+        luxuryTax();
     };
 
     // Dropdown button functionality
@@ -91,6 +94,7 @@ $(document).ready(function() {
         var val = $("#slider").val();
 
         $("#salary-cap-box").html(`$${addCommas(val)}`);  
+        luxuryTax();
     };
 
     // Prettify salary by adding commas with reg ex
@@ -106,7 +110,6 @@ $(document).ready(function() {
             type: 'GET'
         }).then(function(data){
             $.get("/api/bulls_data", function(data){
-
                 for (var i = 0; i < data.length; i++) {
                     var newDiv = $("<div>");
                     newDiv.addClass("active-player");
@@ -141,32 +144,28 @@ $(document).ready(function() {
 
     // Drop player from roster when user clicks on the x
     function dropPlayer(dropped){
-        console.log('worked');
-        $("#available-block").append(dropped);
-        
-        };
+        $("#available-block").append(dropped);        
+    };
 
     function renderTeamPlayers(num){
         $.get("/api/league_data", function(data){
             for (var i = 0; i < data.length; i++) {
                 if (data[i].team_name == num || data[i].player_position == num || data[i].player_position == `${num}/C` || data[i].player_position == `${num}/F` || data[i].player_position == `${num}/G`){
-                var newDiv = $("<div>");
-                newDiv.addClass("active-player");
-    
-                newDiv.attr({
-                    draggable: "true",
-                    ondragstart: "drag(event)",
-                    ondragend: "dragend(event)",
-                    id: "player-" + [i]
-                });
+                    var newDiv = $("<div>");
+                    newDiv.addClass("active-player");
+        
+                    newDiv.attr({
+                        draggable: "true",
+                        ondragstart: "drag(event)",
+                        ondragend: "dragend(event)",
+                        id: "player-" + [i]
+                    });
 
-                var currency = (`${data[i].player_salary}`);
+                    var currency = (`${data[i].player_salary}`);
 
-                newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
-
-                newDiv.append('<i class="fas fa-times drop"></i>');
-
-                $("#available-block").append(newDiv);
+                    newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
+                    newDiv.append('<i class="fas fa-times drop"></i>');
+                    $("#available-block").append(newDiv);
                 }
             }
         });
@@ -176,27 +175,25 @@ function renderStatCard(num){
     $.get("/api/league_data", function(data){
         // console.log('working');
         for (var i = 0; i < data.length; i++) {
-            if (num.includes(data[i].player_name)){
-            
-            var currency = (`${data[i].player_salary}`);
+            if (num.includes(data[i].player_name)){            
+                var currency = (`${data[i].player_salary}`);
 
-            $('.player-card').append(
-                `Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} 
-                Position: ${data[i].player_position} Team Name: ${data[i].team_name} 
-                Points Per Game: ${data[i].ppg}`);
-   };
- };
-});
+                $('.player-card').append(
+                    `Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} 
+                    Position: ${data[i].player_position} Team Name: ${data[i].team_name} 
+                    Points Per Game: ${data[i].ppg}`);
+            };
+        };
+    });
+
     $.get("/api/bulls_data", function(data){
         for (var i = 0; i < data.length; i++) {
             if (num.includes(data[i].player_name)){
-            
-            var currency = (`${data[i].player_salary}`);
+                var currency = (`${data[i].player_salary}`);
 
-            $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
+                $('.player-card').append(`Name: ${data[i].player_name} 2018/2019 Salary: $${addCommas(currency)} Position: ${data[i].player_position} Team Name: ${data[i].team_name} Points Per Game: ${data[i].ppg}`);
 
-            $('.player-card').append('<i class="fas fa-times drop"></i>');
-
+                $('.player-card').append('<i class="fas fa-times drop"></i>');
             };
         };
     });
@@ -250,6 +247,29 @@ function renderStatCard(num){
             // console.log(salary);
         };
         $("#team-salary").text(`$${addCommas(salary)}`);
+        luxuryTax();
+    }
+
+    // Update luxury tax based on both salary cap and user team's salary total
+    // #team-salary is .text() because it's the content of a div, and not a value on an input
+    // reg ex removes the comma separators from the display, because otherwise the number would stop at the first comma
+    function luxuryTax() {
+        var salaryCap = parseInt($("#slider").val());
+        var userSalary = parseInt($("#team-salary").text().replace(/\$|,/g, ""));
+
+
+        var luxuryTax = userSalary - salaryCap;
+
+        // console.log(salaryCap);
+        // console.log(userSalary);
+        // console.log(luxuryTax);
+
+        if (luxuryTax > 0) {
+            $("#luxury-tax").text("$0");
+        }
+        else {
+            $("#luxury-tax").text(`$${addCommas(Math.abs(luxuryTax))}`);
+        }
     }
 
     renderPage();
