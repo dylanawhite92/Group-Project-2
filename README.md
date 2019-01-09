@@ -148,3 +148,25 @@ Dean Deolitsis, Patrick Holmes, Veronica Vera, Dylan White, Hannah Willis
 ![Image description](/app/public/images/byposition.jpg)
 
 ![Image description](/app/public/images/scores.jpg)
+
+
+### Issues
+* Replace static images in README with up to date .gifs that show the user functionality and place them in relevant sections.
+* Clean up styling for drop (X next to player information) button.
+* Drop button on stat card puts it in the availabe players section. Maybe just change it to a separate close button that sets the display to none.
+* Your Salary and Your Score updates when you drop a player, but not when you add one from Available Players. Could be as simple as calling the update functions in the function that drop players.
+* If you add a player to your team and search the same parameter again, they will show as a duplicate in the Available Players.
+* Opponent's Score not currently connected to any games/teams.
+* Wins | Losses not connected to anything.
+* Only one number field in Wins | Losses.
+* When the opponent's score is up to date we're not necessarily going to want it to be a win/loss with every trade we make? User should be able to make moves and decide Should it be taken out altogether until there's more user functionality?
+* User should be able to decide a team to play against. Not necessarily against the next game?
+* Cannot save team and update it in the database.
+* Login/Signup Error Handling. If already signed up, it currently routes to a Cannot GET object page. Change to a modal that flashes and informs them the user already exists, link them to login page?
+* Nothing happens on the login when they enter an invalid password for a valid ID. Show that the password given is invalid? Perhaps use/look at failureFlash in passport.js.
+* About Us/Contact page with links to github/linkedin?
+* Display a welcome in the navbar showing their email such as 'Welcome, big@butt.com!'.
+* Option to pull up a user's saved teams.
+* Currently, you can add more than 12 players to Your Team.
+* Currently, you can add more than 3 players to Inactives.
+* If Your Team/Inactives is at max players, turn off drag and drop functionality. Turn it back on when the player is beneath max.
