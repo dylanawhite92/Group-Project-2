@@ -230,7 +230,7 @@ var salary = 0
           var currency = `${data[i].player_salary}`;
 
           newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
-          newDiv.append('<i class="fas fa-times drop"></i>');
+          newDiv.append('<i class="fas fa-times right drop"></i>');
           $("#available-block").append(newDiv);
         }
       }
