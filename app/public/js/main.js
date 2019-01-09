@@ -177,11 +177,18 @@ var salary = 0
             id: "bullsPlayer-" + [i]
           });
 
-          var currency = `${data[i].player_salary}`;
+          var playerDiv = $("<div>");
+          playerDiv.addClass("player-name");
+          playerDiv.append(`${data[i].player_name}`);
 
-          newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
+          var salaryDiv = $("<div>");
+          salaryDiv.addClass("player-salary");
+          salaryDiv.append(`$${addCommas(data[i].player_salary)}`);
+          salaryDiv.append('<i class="fas fa-times right drop"></i>');
 
-          newDiv.append('<i class="fas fa-times right drop"></i>');
+          newDiv.append(playerDiv);
+          newDiv.append(salaryDiv);
+
           if (i <= 11) {
             $("#dropzone").append(newDiv);
             activeTeam.push(data[i]);
@@ -227,10 +234,18 @@ var salary = 0
             id: "player-" + [i]
           });
 
-          var currency = `${data[i].player_salary}`;
+         var playerDiv = $("<div>");
+          playerDiv.addClass("player-name");
+          playerDiv.append(`${data[i].player_name}`);
 
-          newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
-          newDiv.append('<i class="fas fa-times right drop"></i>');
+          var salaryDiv = $("<div>");
+          salaryDiv.addClass("player-salary");
+          salaryDiv.append(`$${addCommas(data[i].player_salary)}`);
+          salaryDiv.append('<i class="fas fa-times right drop"></i>');
+
+          newDiv.append(playerDiv);
+          newDiv.append(salaryDiv);
+
           $("#available-block").append(newDiv);
         }
       }
