@@ -152,7 +152,6 @@ Dean Deolitsis, Patrick Holmes, Veronica Vera, Dylan White, Hannah Willis
 
 ### Issues
 * Replace static images in README with up to date .gifs that show the user functionality and place them in relevant sections.
-* Clean up styling for drop (X next to player information) button.
 * Drop button on stat card puts it in the availabe players section. Maybe just change it to a separate close button that sets the display to none.
 * Your Salary and Your Score updates when you drop a player, but not when you add one from Available Players. Could be as simple as calling the update functions in the function that drop players.
 * If you add a player to your team and search the same parameter again, they will show as a duplicate in the Available Players.
