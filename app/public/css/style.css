@@ -18,6 +18,14 @@ body, #dropzone, #available-block {
     display: none;
 }
 
+.drop {
+    padding-right: 4px;
+}
+
+.drop:hover {
+    cursor: pointer;
+}
+
 /*adding a divider border*/
 #divider {
     border-right: 1px solid red;
