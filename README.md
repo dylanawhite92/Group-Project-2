@@ -169,3 +169,4 @@ Dean Deolitsis, Patrick Holmes, Veronica Vera, Dylan White, Hannah Willis
 * Currently, you can add more than 12 players to Your Team.
 * Currently, you can add more than 3 players to Inactives.
 * If Your Team/Inactives is at max players, turn off drag and drop functionality. Turn it back on when the player is beneath max.
+* Modularize .js files for better performance?
