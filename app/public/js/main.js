@@ -42,7 +42,7 @@ $(document).ready(function() {
 var salary = 0
 
   // On click event for closing stat card
-  $(".stat-drop").on("click", function() {
+  $(document).on("click", ".stat-drop", function() {
     $(".card").css("display", "none");
   });
 
@@ -181,7 +181,7 @@ var salary = 0
 
           newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
 
-          newDiv.append('<br><i class="fas fa-times right drop"></i>');
+          newDiv.append('<i class="fas fa-times right drop"></i>');
           if (i <= 11) {
             $("#dropzone").append(newDiv);
             activeTeam.push(data[i]);
