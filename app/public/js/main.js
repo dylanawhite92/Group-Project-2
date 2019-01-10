@@ -82,9 +82,10 @@ var salary = 0
   $(document).on("click", ".active-player", function() {
     var playerName = this.textContent;
 
-    $(".card").css("display", "block");
-
     $(".player-card").empty();
+
+    $(".card").css("display", "block");
+    
     renderStatCard(playerName);
   });
 
