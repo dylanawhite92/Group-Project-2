@@ -41,37 +41,36 @@ $(document).ready(function() {
   var teamScore = 0; 
 var salary = 0
 
-    // On click event for dropping players
-    $(document).on("click", ".drop", function () {
-        var dropped = $(this).parent();
-        var nameText = dropped[0].innerText;        
-        console.log(nameText);
-        dropPlayer(dropped);
-        $.each(activeTeam, function(i){
-            console.log('working');           
-            if(nameText.includes(activeTeam[i].player_name)) {
-                activeTeam.splice(i,1);
-                return false;
-            }
-        });
-        addingPpg();
-        $.each(fullTeam, function(i){
-            console.log('working');           
-            if(nameText.includes(fullTeam[i].player_name)) {
-                fullTeam.splice(i,1);
-                return false;
-            }
-        });
-        console.log(activeTeam);
-        console.log(fullTeam);
-        teamSalary();
-    });
+  // On click event for closing stat card
+  $(".stat-drop").on("click", function() {
+    $(".card").css("display", "none");
+  });
 
-    // $(document).on("click", ".drop1", function () {
-    //     var dropStat = $(this).parent();
-    //     console.log(dropStat);
-    //     dropStatCard(dropStat);
-    // });
+  // On click event for dropping players
+  $(document).on("click", ".drop", function () {
+    var dropped = $(this).parent();
+    var nameText = dropped[0].innerText;        
+    console.log(nameText);
+    dropPlayer(dropped);
+    $.each(activeTeam, function(i){
+      console.log('working');           
+      if(nameText.includes(activeTeam[i].player_name)) {
+        activeTeam.splice(i,1);
+        return false;
+      }
+    });
+    addingPpg();
+    $.each(fullTeam, function(i){
+        console.log('working');           
+        if(nameText.includes(fullTeam[i].player_name)) {
+            fullTeam.splice(i,1);
+            return false;
+        }
+    });
+    console.log(activeTeam);
+    console.log(fullTeam);
+    teamSalary();
+  });
 
   $(document).on("click", ".black-text", function() {
     var teamNamePosition = this.textContent;
@@ -83,9 +82,10 @@ var salary = 0
   $(document).on("click", ".active-player", function() {
     var playerName = this.textContent;
 
-    $(".card").css("display", "block");
-
     $(".player-card").empty();
+
+    $(".card").css("display", "block");
+    
     renderStatCard(playerName);
   });
 
@@ -181,7 +181,7 @@ var salary = 0
 
           newDiv.append(`${data[i].player_name} $${addCommas(currency)}`);
 
-          newDiv.append('<i class="fas fa-times right drop"></i>');
+          newDiv.append('<br><i class="fas fa-times right drop"></i>');
           if (i <= 11) {
             $("#dropzone").append(newDiv);
             activeTeam.push(data[i]);
@@ -270,7 +270,7 @@ var salary = 0
             } <br>Points Per Game: ${data[i].ppg}`
           );
 
-          $(".player-card").append('<i class="fas fa-times drop"></i>');
+          $(".player-card").append('<i class="fas fa-times right stat-drop"></i>');
         }
       }
     });

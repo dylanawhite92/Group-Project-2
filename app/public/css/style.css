@@ -18,12 +18,16 @@ body, #dropzone, #available-block {
     display: none;
 }
 
-.drop {
+.drop, .stat-drop {
     padding-right: 4px;
 }
 
-.drop:hover {
+.drop:hover, .stat-drop:hover {
     cursor: pointer;
+}
+
+.stat-drop {
+    padding-top: 15px;
 }
 
 /*adding a divider border*/
@@ -135,7 +139,7 @@ form {
     text-align: left;
     margin-left: 10px;
     margin-bottom: 2px;
-    max-width: 240px;
+    max-width: 150px;
 }
 
 .active-player:hover {
