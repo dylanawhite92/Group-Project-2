@@ -26,6 +26,10 @@ body, #dropzone, #available-block {
     cursor: pointer;
 }
 
+.stat-drop {
+    padding-top: 15px;
+}
+
 /*adding a divider border*/
 #divider {
     border-right: 1px solid red;
@@ -136,10 +140,6 @@ form {
     margin-left: 10px;
     margin-bottom: 2px;
     max-width: 150px;
-}
-
-.stat-drop {
-    padding-top: 15px;
 }
 
 .active-player:hover {
