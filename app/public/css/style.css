@@ -192,7 +192,7 @@ form {
     margin-bottom: 100px;
 }
 
-#dropzone, #dropzone1, #available-block {
+#dropzone, #dropzone1, #available-block, #win-loss {
     background-image: url("../images/court.jpg");
     width: 75%;
     margin: auto;
@@ -205,12 +205,20 @@ background-color: black;
 
 }
 
-#salary-cap-box, .points-box, #dropzone, #dropzone1, #available-block {
+#win-box {
+    margin-right: 15px;
+}
+
+#loss-box {
+    margin-left: 15px;
+}
+
+#salary-cap-box, .points-box, #dropzone, #dropzone1, #available-block, #win-loss {
     border: solid rgb(183,28,28) 3px;
     padding: 4px;
 }
 
-.active-player, #salary-cap-box, .points-box, #dropzone, #dropzone1, #search, .dropdown-content {
+.active-player, #salary-cap-box, .points-box, #dropzone, #dropzone1, .dropdown-content, #win-loss {
     border-radius: 5px;
 }
 
